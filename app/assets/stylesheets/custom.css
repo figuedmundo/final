@@ -1,0 +1,488 @@
+body 
+{
+    background: #fff;
+    color:  #333;
+    display: block;
+    font-family: Helvetica, Arial;
+    font-size: 16px;
+    height: 100%;
+    margin: 0;
+    min-width: 960px;
+    overflow-y: auto;
+    visibility: visible;
+}
+ul, ol
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+p
+{
+    margin: 0;
+    padding: 0;
+}
+a
+{
+    text-decoration:none;
+}
+
+.header
+{
+    /*background-color: #ccc;*/
+    height: 190px;
+    width: 100%;
+    white-space: nowrap;
+    /*position: absolute;    */
+    background:#fff url(grid-bootstrap.png) bottom repeat-x;
+
+    /*box-shadow: 10px 12px 15px rgba(0,0,0,0.5);*/
+}
+
+.content
+{
+    border-top: 0;
+    margin-top: 0;
+    clear: both;
+    position: relative;
+    width: 100%;
+}
+#section
+{
+    background-color: #fff;
+    width: 960px;
+    margin: 0 auto;
+
+    border: 0;
+    position: relative;
+}
+
+#home {
+    /*display: block;*/
+    vertical-align: top;
+    min-height: 439px;
+    /*background: red;*/
+
+}
+
+
+#col-izq, #col-central, #col-der {
+    display: inline-block;
+    vertical-align: top;
+    min-height: 439px;
+    /*white-space: nowrap;*/
+
+
+}
+
+#col-izq
+{
+    border-right: 0;
+    box-sizing: border-box;
+    float: left;
+    padding: 0 8px 0 0;
+    position: relative;
+    width: 188px;
+
+}
+
+#col-izq #header-izq
+{
+    border-bottom: 0;
+    box-sizing: border-box;
+    padding: 20px 0px 20px 0px;
+    width: 100%;
+}
+#col-izq #header-izq .in-header-izq
+{
+    margin-bottom: 11px;
+    width: 180px;
+}
+#col-izq #header-izq .in-header-izq .cell-foto
+{
+    border: 1px solid #ccc;
+    display: block;
+    min-height: 180px;
+
+}
+#col-izq #header-izq .in-header-izq .cell-foto .anchor-cell-foto
+{
+    display: block;
+    position: relative;
+}
+
+#col-izq #header-izq .in-header-izq .cell-usuario
+{
+    display: block;
+    text-align: center;
+}
+#col-izq #header-izq .in-header-izq .cell-usuario .anchor-cell-usuario
+{
+    display: block;
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+#col-izq #datos-usuario-izq
+{
+    display: block;
+    /*aside esta en veremos :S*/
+}
+
+
+#col-der
+{
+    position: relative;
+    width: 195px;
+}
+#col-der .in-col-der
+{
+    margin: 20px 0px 40px 20px;
+}
+#col-der .in-col-der .box-col-der
+{
+    color: #666;
+    display: block;
+    font-size: 13px;
+    margin: 10px 0 20px 0;
+
+}
+#col-der .in-col-der .box-col-der h4
+{
+    border-bottom: 1px solid #ccc;
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    margin: 17px 0 8px 0;
+
+}
+#col-der .in-col-der .box-col-der  ul li
+{
+    position: relative;
+}
+#col-der .in-col-der .box-col-der  ul li a
+{
+    color: #333;
+    display: block;
+    /*margin-right: 30px;*/
+    padding: 5px 0;
+
+
+}
+#col-der .in-col-der .box-col-der  ul li a:hover
+{
+    background: #D2D2D2;
+    /*color: #444444;*/
+}
+
+
+
+
+#col-central
+{
+    border: 1px solid #ccc;
+    border-top: 1px solid transparent;
+    height: 100%;
+    min-height: 700px;
+    width: 574px;
+
+
+    /*box-shadow: 0px -1px 1px rgba(0,0,0,0.2);*/
+
+}
+#col-central #titulo-central
+{
+    display: block;
+    position: relative;
+    margin: 20px 20px;
+    padding: 0 10px;
+}
+#col-central #titulo-central h2
+{
+    display: inline-block;
+    font-size: 19px;
+    margin: 0;
+
+}
+#col-central #editar
+{
+    background: #dd4b39;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px  rgba(221,75,57,0.7);
+    color: #fff;
+    display: inline-block;
+    float: right;
+    font-size: 13px;
+    padding: 9px 9px;
+    position: relative;
+    top: -6px;
+
+}
+
+#col-central .comentario
+{
+    /*width: 100%;*/
+    border-bottom: 1px solid #ccc;
+    display: block;
+    margin: 0px 20px;
+    padding: 20px 10px 30px 10px;
+    position: relative;
+
+}
+/* -------------------------------------------------- */
+/* perfil */
+/* -------------------------------------------------- */
+#col-central #perfil
+{
+    display: block;
+    margin: 10px 18px 18px 18px;
+    /*padding: 20px 0px;*/
+    position: relative;
+
+
+}
+
+#col-central #perfil .box-dato-perfil
+{
+    padding: 10px 0px  ;
+    display: block;
+
+}
+#col-central #perfil .box-dato-perfil h4
+{
+    color: #777;
+    display: inline-block;
+    padding: 0 10px;
+    width: 110px;
+    text-align: right;
+    font-weight: normal;
+    margin: 0;
+    /*line-height: 18px;*/
+
+}
+#col-central #perfil .box-dato-perfil .dato-perfil
+{
+    display: inline-block;
+    /*font-size: 13px ;*/
+}
+#col-central #perfil .box-dato-perfil .mapa
+{
+
+}
+#col-central #perfil #map
+{
+    border: 1px solid #ccc;
+    height: 301px;
+    width: 536px;
+    margin: 10px 0;
+}
+
+
+/*
+#wrapper
+{
+    background-color: yellow;
+    width: 960px;
+    margin: 0 auto;
+    height: auto;
+
+}*/
+
+.footer
+{
+
+    /*background-color: #333;*/
+    clear: both;
+    font-size: 11px;
+    /*height: 32px;*/
+    padding: 1em 0 0 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #ccc;
+
+}
+
+.footer a
+{
+    color: #000;
+    padding: 0 20px;
+    text-decoration: none;
+}
+
+
+/*
+**TOP DECORATION
+*/
+#top-decoracion
+{
+    /*background-color: #959595;*/
+    color: #DDD;
+    height: 54px;
+    width: 100%;
+
+    
+}
+
+/* header nav = .top-menu */
+#top-menu
+{
+    /*background-color: #222222;*/
+    /*color: #000;*/
+    /*position: fixed;*/
+    /*margin: 100px 50px;*/
+    font-size: 80%;
+    padding-right: 10px;
+    display: block;
+    /*right: 0px;*/
+    /*border-radius: 5px;*/
+    margin-top: 20px;
+
+    padding: 8px 10px ;
+    float: right;
+
+}
+
+.top-menu ul
+{
+    /*padding: 20px 15px 5px 15px ;*/
+    /*float: left;*/
+    /*display: inline;*/
+
+}
+
+.top-menu ul li
+{
+    /*#c9dad2*/
+    border-right: 1px solid #000;
+    display: inline-block;
+    padding: 1px 10px ;
+    vertical-align: top;
+}
+
+.top-menu ul li:last-child
+{
+    border-right: none;
+    
+}
+
+.top-menu ul li a
+{
+    /*color: #ccc;*/
+    /*color: rgba(255, 255, 255, 0.4);*/
+    text-decoration: none;
+    display: block;
+    /*color: #000;*/
+}
+
+.top-menu ul li a:hover
+{
+    color: #fff;
+}
+
+.top-menu ul li a:visited
+{
+    color: #f22;
+}
+
+
+
+
+
+
+
+/*bordes redondeados*/
+.round 
+{
+    border-radius: 1.5em;   
+}
+
+
+/*reducir los espacios en blanco que hasta ahora no me aparecio ni uno*/
+.yui3-g {
+    letter-spacing: -.5em; /* webkit: collapse white-space between units */
+    *letter-spacing: normal; /* reset IE < 8 */
+    word-spacing: -.5em; /* IE < 8 && gecko: collapse white-space between units */
+}
+
+/* -------------------------------------------------- */
+/* menu-principal */
+/* -------------------------------------------------- */
+    #menu-principal {
+        clear:left;
+        float:left;
+        padding:0;
+        /*background:#fff url(menu-principal.gif) bottom repeat-x;*/
+        /*width:100%;*/
+        overflow:hidden;
+        /*font-family:Verdana, Geneva, sans-serif;*/
+        background-color: transparent;
+        position: absolute;
+        top: -48px;
+        /*font-size: 11px;*/
+    }
+    #menu-principal ul {
+        /*float:left;*/
+        margin:0;
+        padding:0;
+        /*list-style:none;*/
+        position:relative;
+        left:50%;
+        text-align:center;
+        /*bottom: -5px;*/
+    }
+    #menu-principal ul li {
+        display:block;
+        float:left;
+
+        /*list-style:none;*/
+        margin:20px 0 0 0;
+        padding: 0;
+        position:relative;
+        right:50%;
+
+        /*box-shadow: 0px -2px 1px rgba(0,0,0,0.5);*/
+
+    }
+    #menu-principal ul li a {
+        display:block;
+        /*float:left;*/
+        margin:0 1px;
+        padding: 5px 10px;
+        background: #fff;
+        text-decoration:none;
+        color:#000;
+        border-top:1px solid #ccc;
+        border-left:1px solid #ccc;
+        border-right:1px solid #ccc;
+        /*border: 1px 1px 0 1px;*/
+        /*border-color: solid yellow;*/
+        position:relative;
+        /*bottom: -5px;*/
+        border-top-left-radius:  5px ;
+        border-top-right-radius: 5px ;
+
+        box-shadow: 1px -1px 2px rgba(0,0,0,0.6);
+
+
+    }
+    #menu-principal ul li a:hover {
+        background:#36f;
+        color:#fff;
+    }
+    #menu-principal ul li.active {
+        margin-top:10px;
+        /*bottom: -5px;*/
+    }
+    #menu-principal ul li.active a,
+    #menu-principal ul li.active a:hover {
+        position:relative;
+        bottom:0;
+        padding:10px;
+        background:#fff;
+        color:#000;
+        font-weight:bold;
+    }

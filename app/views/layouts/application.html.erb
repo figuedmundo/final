@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>FinalU</title>
+  <title><%= full_title(@title) %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <%= render 'layouts/header' %>
+
+  <content id="content" class="content" >
+    <section id="section">  
+      
+      <%= yield %>
+
+    </section>
+  </content>
+
+  <%= render 'layouts/footer' %>
 
 </body>
 </html>
+
+
+       
+            
+   
