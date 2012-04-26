@@ -183,10 +183,11 @@ a
 
 #col-central
 {
-    border: 1px solid #ccc;
-    border-top: 1px solid transparent;
-    height: 100%;
-    min-height: 700px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    /*border-top: 1px solid transparent;*/
+    /*height: 100%;*/
+    /*min-height: 700px;*/
     width: 574px;
 
 
@@ -235,7 +236,7 @@ a
 /* -------------------------------------------------- */
 /* perfil */
 /* -------------------------------------------------- */
-#col-central #perfil
+#col-central .perfil
 {
     display: block;
     margin: 10px 18px 18px 18px;
@@ -245,13 +246,13 @@ a
 
 }
 
-#col-central #perfil .box-dato-perfil
+#col-central .perfil .box-dato-perfil
 {
     padding: 10px 0px  ;
     display: block;
 
 }
-#col-central #perfil .box-dato-perfil h4
+#col-central .perfil .box-dato-perfil h4
 {
     color: #777;
     display: inline-block;
@@ -263,16 +264,16 @@ a
     /*line-height: 18px;*/
 
 }
-#col-central #perfil .box-dato-perfil .dato-perfil
+#col-central .perfil .box-dato-perfil .dato-perfil
 {
     display: inline-block;
     /*font-size: 13px ;*/
 }
-#col-central #perfil .box-dato-perfil .mapa
+#col-central .perfil .box-dato-perfil .mapa
 {
 
 }
-#col-central #perfil #map
+#col-central .perfil #map
 {
     border: 1px solid #ccc;
     height: 301px;
@@ -291,6 +292,9 @@ a
 
 }*/
 
+/*
+** footer
+*/
 .footer
 {
 
