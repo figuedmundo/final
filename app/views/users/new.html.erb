@@ -10,35 +10,13 @@
   </header>
   
   <article id="registro" class="perfil">
-    
-    <%= form_for @user do |f| -%>
-      <!-- <div id="map"></div> -->
+    <%= simple_form_for @user do |f| %>
       
-      <div id="wrap-email" class="box-dato-perfil">
-          <h4>
-            <%= f.label :email, "Email" %>
-          </h4>
-            <%= f.text_field :email, class: "dato-perfil"%>
-      </div>
-
-      <div id="wrap-password" class="box-dato-perfil">
-          <h4>
-            <%= f.label :password, "Password" %>
-          </h4>
-          <%= f.password_field :password, class: "dato-perfil" %>
-      </div>
-
-      <div id="wrap-password_confirmation" class="box-dato-perfil">
-          <h4>
-            <%= f.label :password_confirmation, "Confirmar password" %>
-          </h4>
-          <%= f.password_field :password_confirmation, class: "dato-perfil" %>
-      </div>
-
-      <div id="wrap-button" class="box-dato-perfil">
-        <%= f.submit "Guardar datos" %>
-      </div>
-      
+      <%= f.input :email, hint: "esta cuenta sera usada para logearse" %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+      <%= f.error :base %>
+      <%= f.button :submit, value: "Crear cuenta" %>
     <% end -%>
       
   </article>              

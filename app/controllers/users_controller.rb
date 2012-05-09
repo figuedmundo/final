@@ -6,9 +6,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new
-    flash.now[:error] = "#{params}"
-    render :new
+    @user = User.new(params[:user])
+    if @user.save
+      #hacer algo cuando es guardado con exito
+      flash[:success] = "Bienvenido"
+      redirect_to @user
+    else
+      flash.now[:error] = "Porfavor revisa los errores antes de continuar"
+      render :new
+    end
+  end
+
+  def show
+    @user = User.find_by_id(params[:id])
   end
 
   def edit

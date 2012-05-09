@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
                         length: { minimum: 6, message: "minimo %{count} letras" },
                         on: :create
 
-  validates :password_confirmation,  presence: { message: "no puede estar en blanco"},
-                                     on: :create
+  validates :password_confirmation, presence: { message: "no puede estar en blanco"},
+                                    on: :create
 
   def validates_email
     errors[:email] = "no puede estar en blanco"
