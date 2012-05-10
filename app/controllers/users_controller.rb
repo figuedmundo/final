@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       flash.now[:error] = "Porfavor revisa los errores antes de continuar"
+      @title = "Registro"
       render :new
     end
   end

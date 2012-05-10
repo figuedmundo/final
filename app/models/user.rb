@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 
   validates :email,     presence: { message: "no puede estar en blanco"},
                         format: { with: VALID_EMAIL_REGEX, message: "no es un email valido" },
-                        uniqueness: { case_sensitive: true, message: "este email esta repetido"}
+                        uniqueness: { case_sensitive: true, message: "este email ya esta en 
+                          nuestra base de datos"}
 
 
   validates :password,  presence: { message: "no puede estar en blanco"},
