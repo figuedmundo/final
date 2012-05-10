@@ -40,6 +40,8 @@ describe "User Pages" do
         it { should have_selector("title") }
         it { should_not have_link('Login') }
         it { should have_link('Salir' ) }
+        it { should have_link('Perfil', href: perfil_path(user)) }
+        it { should have_link('Fotos') }
       end
     end
   end

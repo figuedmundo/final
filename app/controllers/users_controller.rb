@@ -20,6 +20,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @title = "nombre usuario"
+  end
+
+  def perfil
+    @title = "Perfil"
+    @user = User.find_by_id(params[:id])
   end
 
   def edit

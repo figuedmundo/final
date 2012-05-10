@@ -1,3 +1,4 @@
+   <!-- aca las columnas izquierda, centro y derecha -->
    <section id="col-izq">
        <!-- columna izquierda - foto del usuario o lugar  y una pequenia descripcion -->
       <header id="header-izq">
@@ -9,38 +10,46 @@
 
       <aside id="datos-usuario-izq">
           <!-- no se si esto se va a quedar -->
-          <%= @user.email %>
       </aside>
    </section><!-- 
 --><section id="col-central">
        <!-- colmuna central - contenida de la pagina -->
        <nav id="menu-principal">
            <ul>
-               <li class="active"><%= link_to "Inicio", @user %></li>
+               <li><%= link_to "Inicio", @user %></li>
                <li><a href="#">Agenda</a></li>
                <li><a href="#">To Go</a></li>
                <li><a href="#">Fotos</a></li>
-               <li><%= link_to "Perfil", perfil_path(@user) %></li>
+               <li class="active"><%= link_to "Perfil", perfil_path(@user) %></li>
            </ul>
        </nav>
 
        <header id="titulo-central" >
-           <h3>
-               Novedades
-           </h3>                
-       </header>
+           <h2>
+               Perfil
+           </h2>
 
-       <article class="comentario" >
-           <p>
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-               quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-               consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-               cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-           </p>
+           <div id="editar">Editar Perfil</div>                
+       </header>
+       <article id="perfil" class="perfil">
+           <div id="map"></div>
+           <div id="wrap-map" class="box-dato-perfil">
+               <h4>
+                   Vivo en
+               </h4>
+               <span class="dato-perfil">Cochabamba</span>
+           </div>
+           <div id="wrap-nombre" class="box-dato-perfil">
+               <h4>
+                   Nombre 
+               </h4>
+               <spam class="dato-perfil" >Usuario Prueba</span>
+           </div>
+           <div id="wrap-email" class="box-dato-perfil">
+               <h4>Email</h4>
+               <span class="dato-perfil"> <%= @user.email %> </span>
+           </div>
        </article>
-       
        
    </section><!--
 --><section id="col-der">
@@ -60,6 +69,7 @@
                    </ul>
                </nav>
            </aside>
+
            <aside id="novedades" class="box-col-der">
                <h4>
                    Novedades

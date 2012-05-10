@@ -5,6 +5,8 @@ FinalU::Application.routes.draw do
   root :to => 'simple_pages#home'
 
   match '/signup', to: 'users#new'
+  
+  match 'users/:id/perfil', to: 'users#perfil', as: :perfil  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
