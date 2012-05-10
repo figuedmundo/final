@@ -19,7 +19,5 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: { message: "no puede estar en blanco"},
                                     on: :create
 
-  def validates_email
-    errors[:email] = "no puede estar en blanco"
-  end
+
 end
