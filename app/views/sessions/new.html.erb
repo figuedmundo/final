@@ -1,0 +1,40 @@
+<section id="col-izq">
+  
+</section><!--  
+--><section id="col-central">
+
+  <header id="titulo-central" >
+    <h3>
+      Iniciar sesion
+    </h3>                
+  </header>
+  
+  <article id="registro" class="perfil">
+    
+    <%= form_tag sessions_path do %>
+      
+      <article class="perfil">
+          <div class="box-dato-perfil">
+              <h4>
+                <%= label_tag :email %>
+              </h4>
+              <spam class="dato-perfil" >
+                <%= text_field_tag :email, params[:email] %>
+              </span>
+          </div>
+          <div class="box-dato-perfil">
+              <h4>
+                <%= label_tag :password %>
+              </h4>
+              <span class="dato-perfil">
+                <%= password_field_tag :password %>
+              </span>
+          </div>
+            <%= submit_tag "Entrar", :class => "btn" %>
+      </article>
+    <% end -%>
+      
+  </article>              
+
+</section>
+

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       #hacer algo cuando es guardado con exito
+      log_in @user
       flash[:success] = "Bienvenido"
       redirect_to @user
     else
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    @title = "nombre usuario"
+    @title = @user.email
   end
 
   def perfil

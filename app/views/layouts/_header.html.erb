@@ -7,9 +7,12 @@
     <nav id="top-menu" class="top-menu" >
         
         <ul>
-            <li><%= link_to "Entrar", "#", class: "top-menu-item" %></li>
-            <li class="top-menu-item"><a href="#">Usuario</a></li>
-            <li class="top-menu-item"><a href="#">Salir</a></li>
+            <% if loged_in? %>
+                <li class="top-menu-item"><a href="#">Usuario</a></li>
+                <li class="top-menu-item"><%= link_to "Salir", logout_path, method: :delete %></li>
+            <% else %>
+                <li class="top-menu-item"><%= link_to "Login", login_path %></li>
+            <% end %>
         </ul>
 
     </nav>

@@ -38,8 +38,8 @@ describe "User Pages" do
         let(:user) { User.find_by_email("usuario@ejemplo.com") }
 
         it { should have_selector("title") }
-        it { should_not have_link('Login') }
-        it { should have_link('Salir' ) }
+        it { should_not have_link('Login', href: login_path) }
+        it { should have_link('Salir', href: logout_path) }
         it { should have_link('Perfil', href: perfil_path(user)) }
         it { should have_link('Fotos') }
       end
