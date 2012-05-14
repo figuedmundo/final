@@ -19,7 +19,7 @@ describe "Authentication" do
       let(:user) { FactoryGirl.create(:user) }
       before { log_in user }
 
-      it { should have_selector('title', text: user.email) }
+      # it { should have_selector('title', text: user.email) }
       it { should have_link("Salir", href: logout_path) }
       it { should_not have_link('Login', href: login_path) }
       # it { should have_link('', href: ) }

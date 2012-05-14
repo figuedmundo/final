@@ -1,9 +1,34 @@
-<section id="home">
 
-  <h1>
-    Bienvenido a mi Proyecto Final
-  </h1>
+<% if loged_in? %>
 
-  <%= link_to "Registrate", signup_path %>
+<section id="col-izq">
+  
+</section><!--  
+--><section id="col-central">
+
+  <nav id="menu-principal">
+      <ul>
+          <li class="active"><%= link_to "Inicio", @user %></li>
+          <li><a href="#">Agenda</a></li>
+          <li><a href="#">To Go</a></li>
+          <li><a href="#">Fotos</a></li>
+          <li><%= link_to "Perfil", perfil_path(current_user) %></li>
+      </ul>
+  </nav>
+
+  <header id="titulo-central" >
+    <h3>
+      Adonde quieres ir
+    </h3>                
+  </header>
+
+</section><!--  
+--><section id="col-der">
   
 </section>
+
+<% else %>
+
+  <%= link_to "Registro", signup_path, class: "btn" %>
+
+<% end %>
