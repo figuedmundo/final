@@ -13,76 +13,69 @@
       </aside>
    </section><!-- 
 --><section id="col-central">
-       <!-- colmuna central - contenida de la pagina -->
-       <nav id="menu-principal">
-           <ul>
-               <li><%= link_to "Inicio", @user %></li>
-               <li><a href="#">Agenda</a></li>
-               <li><a href="#">To Go</a></li>
-               <li><a href="#">Fotos</a></li>
-               <li class="active"><%= link_to "Perfil", perfil_path(@user) %></li>
-           </ul>
-       </nav>
-
-       <header id="titulo-central" >
-           <h2>
-               Perfil
-           </h2>
-
-           <div id="editar">Editar Perfil</div>                
-       </header>
-       <article id="perfil" class="perfil">
-           <div id="map"></div>
-           <div id="wrap-map" class="box-dato-perfil">
-               <h4>
-                   Vivo en
-               </h4>
-               <span class="dato-perfil">Cochabamba</span>
-           </div>
-           <div id="wrap-nombre" class="box-dato-perfil">
-               <h4>
-                   Nombre 
-               </h4>
-               <spam class="dato-perfil" >Usuario Prueba</span>
-           </div>
-           <div id="wrap-email" class="box-dato-perfil">
-               <h4>Email</h4>
-               <span class="dato-perfil"> <%= @user.email %> </span>
-           </div>
-       </article>
+      <!-- colmuna central - contenida de la pagina -->
+      
+      <%= render 'shared/menu_principal' %>
        
-   </section><!--
---><section id="col-der">
-       <!-- columna derecha - links a lugares favoritos y recomendados -->
-       <div class="in-col-der">
-           <aside id="sitios-interesantes" class="box-col-der">
-               <h4>
-                   Sitios Interesantes
-               </h4>
-               <nav>
-                   <ul>
-                       <li><a href="#">sitio1</a></li>
-                       <li><a href="#">sitio 2</a></li>
-                       <li><a href="#">sitie 3</a></li>
-                       <li><a href="#">sitie 4</a></li>
-                       <li><a href="#">sitie 5</a></li>
-                   </ul>
-               </nav>
-           </aside>
 
+      <header id="titulo-central" >
+          <h2>
+              Perfil
+          </h2>
+
+          <div class="editar"><%= link_to "Editar perfil", edit_user_path(@user) %></div>        
+      </header>
+      <article id="perfil" class="perfil">
+          <div id="map"></div>
+          <div id="wrap-map" class="box-dato-perfil">
+              <h4>
+                  Vivo en
+              </h4>
+              <span class="dato-perfil">Cochabamba</span>
+          </div>
+          <div id="wrap-nombre" class="box-dato-perfil">
+              <h4>
+                  Nombre 
+              </h4>
+              <spam class="dato-perfil" >Usuario Prueba</span>
+          </div>
+          <div id="wrap-email" class="box-dato-perfil">
+              <h4>Email</h4>
+              <span class="dato-perfil"> <%= @user.email %> </span>
+          </div>
+      </article>
+      
+  </section><!--
+--><section id="col-der">
+      <!-- columna derecha - links a lugares favoritos y recomendados -->
+      <div class="in-col-der">
+          <aside id="sitios-interesantes" class="box-col-der">
+              <h4>
+                  Sitios Interesantes
+              </h4>
+              <nav>
+                  <ul>
+                      <li><a href="#">sitio1</a></li>
+                      <li><a href="#">sitio 2</a></li>
+                      <li><a href="#">sitie 3</a></li>
+                      <li><a href="#">sitie 4</a></li>
+                      <li><a href="#">sitie 5</a></li>
+                  </ul>
+              </nav>
+          </aside>
            <aside id="novedades" class="box-col-der">
-               <h4>
-                   Novedades
-               </h4>
-               <nav>
-                   <ul>
-                       <li><a href="#">sitio1</a></li>
-                       <li><a href="#">sitio 2</a></li>
-                       <li><a href="#">sitio 3</a></li>
-                       <li><a href="#">sitio 4</a></li>
-                       <li><a href="#">sitio 5</a></li>
-                   </ul>
-               </nav>
-           </aside>
-       </div>
-   </section>
+              <h4>
+                  Novedades
+              </h4>
+              <nav>
+                  <ul>
+                      <li><a href="#">sitio1</a></li>
+                      <li><a href="#">sitio 2</a></li>
+                      <li><a href="#">sitio 3</a></li>
+                      <li><a href="#">sitio 4</a></li>
+                      <li><a href="#">sitio 5</a></li>
+                  </ul>
+              </nav>
+          </aside>
+      </div>
+  </section>

@@ -14,15 +14,8 @@
    </section><!-- 
 --><section id="col-central">
        <!-- colmuna central - contenida de la pagina -->
-       <nav id="menu-principal">
-           <ul>
-               <li class="active"><%= link_to "Inicio", @user %></li>
-               <li><a href="#">Agenda</a></li>
-               <li><a href="#">To Go</a></li>
-               <li><a href="#">Fotos</a></li>
-               <li><%= link_to "Perfil", perfil_path(@user) %></li>
-           </ul>
-       </nav>
+
+      <%= render 'shared/menu_principal' %>
 
        <header id="titulo-central" >
            <h3>

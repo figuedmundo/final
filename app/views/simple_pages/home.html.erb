@@ -6,15 +6,7 @@
 </section><!--  
 --><section id="col-central">
 
-  <nav id="menu-principal">
-      <ul>
-          <li class="active"><%= link_to "Inicio", @user %></li>
-          <li><a href="#">Agenda</a></li>
-          <li><a href="#">To Go</a></li>
-          <li><a href="#">Fotos</a></li>
-          <li><%= link_to "Perfil", perfil_path(current_user) %></li>
-      </ul>
-  </nav>
+  <%= render 'shared/menu_principal' %>
 
   <header id="titulo-central" >
     <h3>
@@ -29,6 +21,6 @@
 
 <% else %>
 
-  <%= link_to "Registro", signup_path, class: "btn" %>
+  <%= link_to "Registrate", signup_path, class: "btn" %>
 
 <% end %>

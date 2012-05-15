@@ -1,2 +1,29 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<section id="col-izq">
+  
+</section><!--  
+--><section id="col-central">
+
+  <%= render 'shared/menu_principal' %>
+
+  <header id="titulo-central" >
+    <h3>
+      Editar
+    </h3>                
+  </header>
+  
+  <article id="registro" class="perfil">
+    <%= simple_form_for @user do |f| %>
+      
+      <%= f.input :email, hint: "esta cuenta sera usada para logearse"  %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+      <%= f.error :base %>
+      <%= f.button :submit, value: "Finalizar", class: "btn btn-alert" %>
+    <% end -%>
+      
+  </article>              
+
+</section><!--  
+--><section id="col-der">
+  
+</section>

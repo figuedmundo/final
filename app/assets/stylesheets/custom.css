@@ -208,19 +208,25 @@ a
     margin: 0;
 
 }
-#col-central #editar
+#col-central .editar
 {
-    background: #dd4b39;
-    border-radius: 8px;
-    box-shadow: 2px 2px 1px  rgba(221,75,57,0.7);
-    color: #fff;
+    /*background: #dd4b39;*/
+    /*box-shadow: 2px 2px 1px  rgba(221,75,57,0.7);*/
     display: inline-block;
     float: right;
-    font-size: 13px;
-    padding: 9px 9px;
     position: relative;
     top: -6px;
-
+}
+#col-central .editar a{
+    background-color: #4D90FE;
+    border-color: #3079ED;
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px  rgba(255,255,255,0.4);
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    padding: 9px 9px;
+    position: relative;
 }
 
 #col-central .comentario
@@ -613,7 +619,12 @@ input:focus, textarea:focus {
     border-color: #55a12c;
     font-weight: bold;
 }
-
+.alert-notice {
+    background-color: #eaaf51;
+    border-color: #d99a36;
+    /*font-weight: bold;*/
+    color: #000;
+}
 /*
 .info{
     background-color: #4ea5cd;

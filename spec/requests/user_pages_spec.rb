@@ -53,4 +53,40 @@ describe "User Pages" do
     it { should have_selector('title') }
   end
 
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before do
+      log_in user
+      visit edit_user_path(user) 
+    end
+
+    describe "page" do
+      it { should have_selector('title', text: "Editar") }
+      # it { should have_selector('h1', text: ) }
+      # it { should have_link('', href: ) }
+    end
+
+    describe "with invalid info" do
+      before do
+        fill_in "Email",   with: "invalido"
+        click_button "Finalizar" 
+      end
+
+      it { should have_selector('span.error') }
+    end
+
+    describe "with valid info" do
+      let(:new_email) { "nuevo@email.com" }
+      before do
+        fill_in "Email",   with: new_email
+        click_button "Finalizar"
+      end
+
+      # it { should have_selector('title', text: new_name) }
+      it { should have_selector('div.alert.alert-success') }
+      it { should have_link('Salir', href: logout_path) }
+      specify { user.reload.email.should == new_email }
+    end
+  end
+
 end

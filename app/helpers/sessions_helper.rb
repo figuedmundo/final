@@ -13,6 +13,10 @@ module SessionsHelper
     @current_user ||= user_from_remember_token
   end
 
+  def current_user?(user)
+    current_user == user
+  end
+
   def loged_in?
     !current_user.nil?
   end

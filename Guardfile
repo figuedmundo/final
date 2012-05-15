@@ -1,5 +1,6 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
+require 'active_support/core_ext'
 
 guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
   watch(%r{^spec/.+_spec\.rb$})
@@ -28,8 +29,8 @@ guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
                          "spec/requests/#{m[1].singularize}_pages_spec.rb")]
     end
     watch(%r{^app/views/(.+)/}) do |m|
-      # "spec/requests/#{m[1].singularize}_pages_spec.rb"
-      "spec/requests/#{m[1]}_pages_spec.rb"
+      "spec/requests/#{m[1].singularize}_pages_spec.rb"
+      # "spec/requests/#{m[1]}_pages_spec.rb"
     end
 end
 

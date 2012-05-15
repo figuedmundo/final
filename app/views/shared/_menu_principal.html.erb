@@ -1,0 +1,9 @@
+  <nav id="menu-principal">
+      <ul>
+          <li><%= link_to "Inicio", current_user %></li>
+          <li><a href="#">Agenda</a></li>
+          <li><%= link_to "Ir", root_path %></li>
+          <li><a href="#">Fotos</a></li>
+          <li><%= link_to "Perfil", perfil_path(current_user) %></li>
+      </ul>
+  </nav>
