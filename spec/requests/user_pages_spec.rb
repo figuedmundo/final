@@ -24,6 +24,8 @@ describe "User Pages" do
 
     describe "with valid info" do
       before do
+        fill_in "Name",   with: "Usuario"
+        fill_in "Last name",   with: "Ejemplo"
         fill_in "Email",   with: "usuario@ejemplo.com"
         fill_in "Password",   with: "foobar"
         fill_in "Confirmar password",   with: "foobar"
@@ -50,7 +52,7 @@ describe "User Pages" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_selector('title') }
+    it { should have_selector('title', text: user.name) }
   end
 
   describe "edit" do
@@ -89,4 +91,32 @@ describe "User Pages" do
     end
   end
 
+  describe "index" do
+    before do
+      log_in FactoryGirl.create(:user)
+      FactoryGirl.create(:user, email: "bob@email.com")
+      FactoryGirl.create(:user, email: "max@email.com")
+      visit users_path
+    end
+
+    it { should have_selector('title', text: "Usuarios") }
+
+    describe "delete links" do
+      it { should_not have_link('delete') }
+      describe "as an admin user" do
+        let!(:admin) { FactoryGirl.create(:admin, email: "admin@ejemplo.com") }
+        before do
+          log_in admin
+          visit users_path
+        end
+
+        it { should have_link('delete') }
+        it "should be able to delete users" do
+          expect { click_link("delete") }.to change(User, :count).by(-1)
+        end
+        it { should_not have_link('delete', href: user_path(admin)) }
+        
+      end
+    end
+  end
 end

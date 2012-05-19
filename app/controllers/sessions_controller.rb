@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       log_in user
-      redirect_to root_path
+      redirect_back_or root_path
     else
       flash.now[:error] = "Datos invalidos"
       @title = "Login"

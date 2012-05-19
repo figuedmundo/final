@@ -13,11 +13,9 @@
   
   <article id="registro" class="perfil">
     <%= simple_form_for @user do |f| %>
-      
-      <%= f.input :email, hint: "esta cuenta sera usada para logearse"  %>
-      <%= f.input :password %>
-      <%= f.input :password_confirmation %>
-      <%= f.error :base %>
+
+      <%= render 'fields', f: f %>
+
       <%= f.button :submit, value: "Finalizar", class: "btn btn-alert" %>
     <% end -%>
       

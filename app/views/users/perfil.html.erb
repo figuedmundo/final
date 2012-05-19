@@ -23,10 +23,11 @@
               Perfil
           </h2>
 
-          <div class="editar"><%= link_to "Editar perfil", edit_user_path(@user) %></div>        
+          <%= link_to "Editar perfil", edit_user_path(@user), class: "editar-perfil"  if current_user?(@user) %>
+
       </header>
       <article id="perfil" class="perfil">
-          <div id="map"></div>
+          <!-- <div id="map"></div> -->
           <div id="wrap-map" class="box-dato-perfil">
               <h4>
                   Vivo en
@@ -37,7 +38,7 @@
               <h4>
                   Nombre 
               </h4>
-              <spam class="dato-perfil" >Usuario Prueba</span>
+              <spam class="dato-perfil" ><%= @user.full_name %></span>
           </div>
           <div id="wrap-email" class="box-dato-perfil">
               <h4>Email</h4>

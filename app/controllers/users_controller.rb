@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :loged_in_user, only: [:edit, :update, :perfil]
+  before_filter :loged_in_user, only: [:edit, :update, :perfil, :index]
   before_filter :correct_user, only: [:edit, :update]
+  before_filter :admin_user, only: :destroy
 
   def new
     @title = "Registro"
@@ -23,12 +24,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
-    @title = @user.email
+    @title = @user.name
   end
 
   def perfil
-    @title = "Perfil"
     @user = User.find_by_id(params[:id])
+    @title = @user.name
   end
 
   def edit
@@ -49,17 +50,32 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def index
+    @title = "Usuarios"
+    @users = User.all
+    # @user = User.find(params[:id])
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:notice] = "User eliminado"
+    redirect_to users_path
   end
 
   private
-
     def loged_in_user
-      redirect_to login_path, notice: "Porfavor registrate!!" unless loged_in?
+      unless loged_in?
+        store_location
+        redirect_to login_path, notice: "Porfavor registrate!!" 
+      end
     end
 
     def correct_user
       @user = User.find(params[:id])
       redirect_to root_path unless current_user?(@user)
+    end
+
+    def admin_user
+      redirect_to root_path unless current_user.admin?
     end
 end

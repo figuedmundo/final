@@ -35,6 +35,17 @@ describe "Authentication" do
     describe "for non loged in users" do
       let(:user) { FactoryGirl.create(:user) }  
 
+      describe "when attemping to visit a protected page | friendly forwading" do
+        before do
+          visit edit_user_path(user)
+          fill_in "Email",   with: user.email
+          fill_in "Password",   with: user.password
+          click_button "Entrar"
+        end
+
+        it { should have_selector('title', text: "Editar") }
+      end
+
       describe "in the users controller" do
         
         describe "visiting the edit page" do
@@ -46,6 +57,11 @@ describe "Authentication" do
           before { put user_path(user) }
           specify { response.should redirect_to(login_path) }
         end
+      end
+
+      describe "the index action /users " do
+        before { visit users_path }
+        it { should have_selector('title', text: "Login") }
       end
     end
 

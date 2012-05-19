@@ -3,19 +3,29 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(email: "usuario@ejemlo.com", 
+    @user = User.new( name: "Usuario", last_name: "Ejemplo", email: "usuario@ejemlo.com", 
                      password: 'foobar', password_confirmation: 'foobar')
   end
 
   subject { @user }
   
+  it { should respond_to(:name) }
+  it { should respond_to(:last_name) }
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:full_name) }
+  it { should respond_to(:admin) }
 
   it { should be_valid }
+  it { should_not be_admin }
+
+  describe "toggle admin" do
+    before { @user.toggle!(:admin) }
+    it { should be_admin }
+  end
 
   describe "when password is not present" do
     before { @user.password = @user.password_confirmation = " " }

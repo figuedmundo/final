@@ -4,7 +4,8 @@ gem 'rails', '3.2.3'
 
 gem 'pg', '0.13.2'
 gem 'bcrypt-ruby', '3.0.1'
-gem "simple_form", "2.0.2"
+gem 'simple_form', '2.0.2'
+gem 'faker', '1.0.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
