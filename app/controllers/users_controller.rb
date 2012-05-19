@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :loged_in_user, only: [:edit, :update, :perfil, :index]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
+  before_filter :not_loged_in, only: [:new, :create]
 
   def new
     @title = "Registro"
@@ -57,9 +58,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:notice] = "User eliminado"
-    redirect_to users_path
+    user = User.find(params[:id])
+    unless user.admin?
+      user.destroy
+      flash[:notice] = "User eliminado"
+    end
+      redirect_to users_path
   end
 
   private
@@ -77,5 +81,9 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to root_path unless current_user.admin?
+    end
+
+    def not_loged_in
+      redirect_to root_path if loged_in?
     end
 end
