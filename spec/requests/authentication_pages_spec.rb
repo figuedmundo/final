@@ -59,6 +59,17 @@ describe "Authentication" do
         end
       end
 
+      describe "in the comments controller" do
+        describe "submitting  to the create action" do
+          before { post comments_path }
+          specify { response.should redirect_to(login_path) }
+        end
+        describe "submitting  to the destroy action" do
+          before { delete comment_path(FactoryGirl.create(:comment)) }
+          specify { response.should redirect_to(login_path) }
+        end
+      end
+
       describe "the index action /users " do
         before { visit users_path }
         it { should have_selector('title', text: "Login") }

@@ -25,6 +25,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @comments = @user.comments.all 
+    @comment = @user.comments.build
     @title = @user.name
   end
 
@@ -67,12 +69,7 @@ class UsersController < ApplicationController
   end
 
   private
-    def loged_in_user
-      unless loged_in?
-        store_location
-        redirect_to login_path, notice: "Porfavor registrate!!" 
-      end
-    end
+
 
     def correct_user
       @user = User.find(params[:id])
@@ -87,3 +84,5 @@ class UsersController < ApplicationController
       redirect_to root_path if loged_in?
     end
 end
+
+

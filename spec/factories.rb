@@ -11,5 +11,10 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :comment do
+    content "Lorem ipsun"
+    user
+  end
 end
 

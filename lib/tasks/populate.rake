@@ -12,11 +12,15 @@ namespace :db do
       last_name = Faker::Name.last_name
       email = "user#{n}@ejemplo.com"
       password = "foobar"
-      User.create!(name: name,
-                   last_name: last_name,
-                   email: email,
-                   password: password,
-                   password_confirmation: password)
+      user =  User.create!(name: name,
+                           last_name: last_name,
+                           email: email,
+                           password: password,
+                           password_confirmation: password)
+      10.times do 
+        content = Faker::Lorem.sentence(20)
+        user.comments.create!(content: content)
+      end
     end
   end
 end

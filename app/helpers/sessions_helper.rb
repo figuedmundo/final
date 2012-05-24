@@ -35,6 +35,13 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 
+  def loged_in_user
+    unless loged_in?
+      store_location
+      redirect_to login_path, notice: "Porfavor registrate!!" 
+    end
+  end
+
   private
 
     def user_from_remember_token
