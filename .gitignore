@@ -27,3 +27,6 @@ bundler_stubs/
 
 # its for heroku deploy reduce slug size
 .slugignore
+
+# images uploaded
+/public/uploads

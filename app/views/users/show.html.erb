@@ -1,16 +1,7 @@
    <section id="col-izq">
        <!-- columna izquierda - foto del usuario o lugar  y una pequenia descripcion -->
-      <header id="header-izq">
-          <div class="in-header-izq">
-              <div class="cell-foto"><a href="#" class="anchor-cell-foto">img</a></div>
-              <div class="cell-usuario"><a href="#" class="anchor-cell-usuario">Usuario</a></div>
-          </div>
-      </header>
-
-      <aside id="datos-usuario-izq">
-          <!-- no se si esto se va a quedar -->
-          <%= @user.email %>
-      </aside>
+      <%= render 'shared/col_izq' %>
+      
    </section><!-- 
 --><section id="col-central">
        <!-- colmuna central - contenida de la pagina -->

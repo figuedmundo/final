@@ -54,9 +54,10 @@ class UsersController < ApplicationController
   end
 
   def index
-    @title = "Usuarios"
-    @users = User.all
+    @title  = "Usuarios"
+    @users  = User.all
     # @user = User.find(params[:id])
+    @user   =  current_user
   end
 
   def destroy

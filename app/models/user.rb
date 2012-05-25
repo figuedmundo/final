@@ -1,7 +1,24 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer         not null, primary key
+#  email           :string(255)
+#  password_digest :string(255)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  remember_token  :string(255)
+#  name            :string(255)
+#  last_name       :string(255)
+#  admin           :boolean         default(FALSE)
+#  avatar          :string(255)
+#
+
 class User < ActiveRecord::Base
-  attr_accessible :email, :password , :password_confirmation, :name, :last_name
+  attr_accessible :email, :password , :password_confirmation, :name, :last_name, :avatar
   has_secure_password
   has_many :comments
+  mount_uploader :avatar, AvatarUploader
 
   before_save { |user| user.email     = email.downcase }
   before_save { |user| user.name      = name.titleize }

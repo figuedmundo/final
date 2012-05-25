@@ -4,6 +4,8 @@
           <li><%= link_to "Novedades", current_user %></li>
           <li><a href="#">Agenda</a></li>
           <li><a href="#">Fotos</a></li>
-          <li><%= link_to "Perfil", perfil_path(current_user) %></li>
+          <%# if current_user?(@user) %>
+            <li><%= link_to "Perfil", perfil_path(current_user) %></li>
+          <%# end %>
       </ul>
   </nav>

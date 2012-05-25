@@ -2,6 +2,6 @@ class SimplePagesController < ApplicationController
   
   def home
     @title = 'Home'
-    # @user = User.find(params[:id])
+    @user = current_user if loged_in?
   end
 end
