@@ -8,6 +8,9 @@ gem 'simple_form', '2.0.2'
 gem 'faker', '1.0.1'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rgeo', '0.3.13'
+gem 'rgeo-activerecord', '0.4.5'
+gem 'activerecord-postgis-adapter', '0.4.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
