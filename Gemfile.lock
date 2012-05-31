@@ -195,7 +195,6 @@ DEPENDENCIES
   rails (= 3.2.3)
   rb-inotify (= 0.8.8)
   rgeo (= 0.3.13)
-  rgeo-activerecord (= 0.4.5)
   rspec-rails (= 2.9.0)
   sass-rails (= 3.2.5)
   simple_form (= 2.0.2)
