@@ -1,8 +1,3 @@
-<!--  -->
-<!--  -->
- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-   <!--  -->
-
    <section id="col-izq">
        <!-- columna izquierda - foto del usuario o lugar  y una pequenia descripcion -->
       <%# render 'shared/col_izq' %>
@@ -15,15 +10,17 @@
 
       <header id="titulo-central" >
           <h3>
-             Nuevo lugar
+             <%= @place.name %>
           </h3>                
       </header>
 
-      <article class="perfil">
+      <article id="show_place" class="perfil">
         <div id="map"></div>
       </article>
 
-      <%= @place.coord %>
+      <%= @place.coord_geographic %>
+      <%# @place.coord_geographic.x %>
+      <%# @place.coord_geographic.y %>
 
    </section><!--
 --><section id="col-der">

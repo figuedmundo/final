@@ -10,14 +10,27 @@
 #
 
 class Place < ActiveRecord::Base
-  attr_accessible :coord, :name
+  attr_accessible :name, :lat, :lng
+  attr_accessor :lat, :lng
+
+  before_save :create_coord
 
 
   FACTORY = RGeo::Geographic.simple_mercator_factory
   set_rgeo_factory_for_column(:coord, FACTORY.projection_factory)
 
   before_save { |place| place.name = name.downcase }
-  validates :name,  uniqueness: { case_sensitive: true, message: "este nombre ya esta en uso" }
+  validates :name,  uniqueness: { case_sensitive: true, message: "este nombre ya esta en uso" },
+                    presence: { message: "no puede estar en blanco"}
+
+  validates :lat,   numericality: true,
+                    length: { maximum: 25 },
+                    on: :create
+
+
+  validates :lng,   numericality: true,
+                    length: { maximum: 25 },                                    
+                    on: :create
 
   # To interact in projected coordinates, just use the "coord"
   # attribute directly.
@@ -36,6 +49,13 @@ class Place < ActiveRecord::Base
   def coord_geographic=(value)
     self.coord = FACTORY.project(value)
   end
+
+
+  private
+
+    def create_coord
+      self.coord = FACTORY.point(lat, lng).projection
+    end
 
 end
 

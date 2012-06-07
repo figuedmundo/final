@@ -2,9 +2,11 @@ var UMSS = {
     map : null,
     infowindow : null,
     markers : Array(),
+    marker : null,
     polyline : null,
     locations : null,
     // overlay: null,
+    coord : null,
     
     init : function( opt_ ) {
         var opt = opt_ || {};
@@ -17,6 +19,98 @@ var UMSS = {
        }
        
        this.map = new google.maps.Map( $(opt.selector || "#map").get(0), options ); 
+    },
+
+    addMarker : function( object_ ){
+                
+
+            if (!UMSS.marker){
+              UMSS.marker = new google.maps.Marker();
+            };
+
+            UMSS.marker.setPosition(new google.maps.LatLng(object_.lat, object_.lng));
+            UMSS.marker.setMap(UMSS.map);
+            
+            // maneja el click sobre un marker y muestra el InfoWindow
+            google.maps.event.addListener( marker, 'click' , function() {
+                
+                if (!UMSS.infowindow) {
+                    UMSS.infowindow = new google.maps.InfoWindow();
+                };
+
+                UMSS.infowindow.setContent(object_.info);
+                
+                UMSS.infowindow.open(UMSS.map, marker);
+            });
+
+            // this.polyline.getPath().push( marker.position );
+    },
+
+    addMarkers : function( object ){
+                
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng( object.lat, object.lng  ),
+                // map: this.map,
+                // icon: 'imagenes/'+object.markerType+'.png'
+                // title: 'Posicion '+key
+            });
+            this.markers.push(marker);
+            
+            // maneja el click sobre un marker y muestra el InfoWindow
+            google.maps.event.addListener( marker, 'click' , function() {
+                
+                if (!UMSS.infowindow) {
+                    UMSS.infowindow = new google.maps.InfoWindow();
+                };
+
+                UMSS.infowindow.setContent(object.info);
+                
+                UMSS.infowindow.open(UMSS.map, marker);
+            });
+
+            // this.polyline.getPath().push( marker.position );
+    },
+
+    getCoords : function() {
+      
+      google.maps.event.addListener(this.map, 'click', function(event){
+        // var c = null;
+      //   var x, y, coord
+      //   x = event.latLng.lat();
+      //   y = event.latLng.lng();
+
+      //   coord = { lat: x, lng: y }
+      //   // return coord
+      //   alert(coord)
+         UMSS.coord = { lat: event.latLng.lat() , lng: event.latLng.lng() }
+        // UMSS.coord = { lat: '1', lng: 3 };
+      });
+        return UMSS.coord
+    },
+
+    removeMarkers : function() {
+        this.markers.length = 0;
+    },
+
+/*    addMarkers : function(){
+         this.locations = locationsJSON.locations;
+         console.log(this.locations);
+          $.each( this.locations, function( key, value ) {
+              mapa.addMarker(value);
+          });
+          mapa.showMarkers();
+    },*/
+    showMarkers : function(){
+        $.each(this.markers, function(key, value) {
+            // console.log(value);
+            value.setMap(UMSS.map);
+        });
+    },
+
+    hideMarkers : function(){
+         $.each(this.markers, function(key, value) {
+            value.setMap(null);
+        });
     },
 
     addOverlay : function ( bounds , image ){

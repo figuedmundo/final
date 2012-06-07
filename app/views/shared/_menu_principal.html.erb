@@ -7,5 +7,6 @@
           <%# if current_user?(@user) %>
             <li><%= link_to "Perfil", perfil_path(current_user) %></li>
           <%# end %>
+          <li><%= link_to "Nuevo Lugar", new_place_path %></li>
       </ul>
   </nav>

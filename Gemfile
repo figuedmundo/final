@@ -8,9 +8,13 @@ gem 'simple_form', '2.0.2'
 gem 'faker', '1.0.1'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'jbuilder'
 gem 'rgeo', '0.3.13'
 # gem 'rgeo-activerecord', '0.4.5'
 gem 'activerecord-postgis-adapter', '0.4.3'
+# user Rails variables in js
+gem 'gon', '3.0.4'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,7 +46,6 @@ end
 # To use ActiveModel has_secure_password
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
 
 # Use unicorn as the app server
 # gem 'unicorn'

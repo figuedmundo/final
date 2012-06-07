@@ -14,13 +14,17 @@ require 'spec_helper'
 describe Place do
   
   before do
-    @place = Place.new(name: "Bar", latlng: 'POINT(1.0 1.0)' )
+    @place = Place.new(name: "Bar")
+    @place.lat = 1.0
+    @place.lng = 1.0
   end
 
   subject { @place }
   
   it { should respond_to(:name) }
-  it { should respond_to(:latlng) }
+  it { should respond_to(:coord) }
+  it { should respond_to(:lat) }
+  it { should respond_to(:lng) }
 
   it { should be_valid }
 
