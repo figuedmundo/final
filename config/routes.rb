@@ -17,6 +17,8 @@ FinalU::Application.routes.draw do
   match '/login', to: 'sessions#new'
   match '/logout', to: 'sessions#destroy', via: :delete
 
+  match '/finder', to: 'places#finder'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

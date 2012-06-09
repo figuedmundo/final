@@ -10,7 +10,7 @@
 #
 
 class Place < ActiveRecord::Base
-  attr_accessible :name, :lat, :lng
+  attr_accessible :name, :lat, :lng, :desc, :address
   attr_accessor :lat, :lng
 
   before_save :create_coord
@@ -31,6 +31,9 @@ class Place < ActiveRecord::Base
   validates :lng,   numericality: true,
                     length: { maximum: 25 },                                    
                     on: :create
+  
+  validates :address, length: { maximum: 35, message: "muy largo, solo %{count} letras" }
+  validates :desc,    length: { maximum: 250, message: "muy largo, solo %{count} letras" }
 
   # To interact in projected coordinates, just use the "coord"
   # attribute directly.

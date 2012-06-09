@@ -14,7 +14,7 @@ require 'spec_helper'
 describe Place do
   
   before do
-    @place = Place.new(name: "Bar")
+    @place = Place.new(name: "Bar", address: "Jordan y Calama 1456", desc: "Ipsun Loren")
     @place.lat = 1.0
     @place.lng = 1.0
   end
@@ -25,8 +25,20 @@ describe Place do
   it { should respond_to(:coord) }
   it { should respond_to(:lat) }
   it { should respond_to(:lng) }
+  it { should respond_to(:address) }
+  it { should respond_to(:desc) }
+
 
   it { should be_valid }
 
+  describe "when address is too long" do
+    before { @place.address = "a"*36 }
+    it { should_not be_valid }
+  end
   
+  describe "when desc is too long" do
+    before { @place.address = "a"*255 }
+    it { should_not be_valid }
+  end
+
 end

@@ -10,28 +10,17 @@
 
       <header id="titulo-central" >
           <h3>
-            Nuevo lugar 
+             A donde quieres ir !!
           </h3>                
       </header>
 
-      <article id="new_place" class="perfil">
+      <article id="finder_place" class="perfil">
         <div id="map"></div>
-
-        <%= simple_form_for @place do |f| %>
-
-          <%= f.input :lat %>
-          <%= f.input :lng %>
-          <%= f.input :name %>
-          <%= f.input :address %>
-          <%= f.input :desc %>
-          <%= f.button :submit, value: "Crear lugar" %>
-
-        <% end %>
       </article>
 
    </section><!--
 --><section id="col-der">
        <!-- columna derecha - links a lugares favoritos y recomendados -->
-    <%= render 'shared/col_der' %>
+    <%= render 'shared/col_der' %>    
     
    </section>

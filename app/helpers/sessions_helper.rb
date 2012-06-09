@@ -42,6 +42,10 @@ module SessionsHelper
     end
   end
 
+  # def current_view
+    
+  # end
+
   private
 
     def user_from_remember_token

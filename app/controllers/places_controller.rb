@@ -1,4 +1,6 @@
 class PlacesController < ApplicationController
+  before_filter :loged_in_user
+  
   def new
     @place = Place.new
     @title = "New lugar"
@@ -13,6 +15,8 @@ class PlacesController < ApplicationController
       flash[:notice] = "Successfully created..."
       redirect_to @place
     else
+      flash.now[:error] = "Te falto algo"
+      @title = "New lugar"
       render :new
     end
   end
@@ -27,5 +31,9 @@ class PlacesController < ApplicationController
   def index
     @places = Place.all
     @title = "Lugares"
+  end
+
+  def finder
+    @title = "Finder"
   end
 end
