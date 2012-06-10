@@ -11,6 +11,9 @@ $ ->
 
   UMSS.init();
 
+  places = gon.places
+  console.log places
+###
   $('#map').click ->
     coords = UMSS.getCoords()
     $('#place_lat').val(coords.lat)
@@ -23,7 +26,7 @@ $ ->
     marker = { lat: gon.x, lng: gon.y, info: gon.place_info }
     UMSS.addMarkers(marker)
     UMSS.showMarkers()
-
+###
 
   # google.maps.event.addListener(UMSS.map, 'click', function(event)
   #   alert event.latLng

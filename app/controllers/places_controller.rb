@@ -31,6 +31,7 @@ class PlacesController < ApplicationController
   def index
     @places = Place.all
     @title = "Lugares"
+    gon.rabl "app/views/places/index.json.rabl", as: "places"
   end
 
   def finder
