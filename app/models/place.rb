@@ -7,10 +7,15 @@
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  coord      :spatial({:no_co
+#  desc       :string(255)
+#  address    :string(255)
+#  id_user    :integer
 #
 
 class Place < ActiveRecord::Base
   attr_accessible :name, :lat, :lng, :desc, :address
+  belongs_to :user
+  has_many :comments
   attr_accessor :lat, :lng
 
   before_save :create_coord

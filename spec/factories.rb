@@ -12,9 +12,21 @@ FactoryGirl.define do
     end
   end
 
+  factory :place do
+    name  "Bar"
+    address "Bar y Baz"
+    desc  "Ipsun loren"
+    lat   1.01
+    lng   1.01
+    # coord "POINT(12.210 21.01)"
+    user
+  end
+
   factory :comment do
     content "Lorem ipsun"
     user
+    # place
   end
+
 end
 

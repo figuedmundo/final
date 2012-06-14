@@ -47,7 +47,7 @@ var UMSS = {
     },
 
     addMarkers : function( object ){
-                
+                console.log(object);
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng( object.lat, object.lng  ),
                 // map: this.map,
@@ -63,12 +63,22 @@ var UMSS = {
                     UMSS.infowindow = new google.maps.InfoWindow();
                 };
 
-                UMSS.infowindow.setContent(object.info);
+                UMSS.infowindow.setContent(object.name);
                 
                 UMSS.infowindow.open(UMSS.map, marker);
             });
 
             // this.polyline.getPath().push( marker.position );
+    },
+
+    addMarkers_ : function(locations){
+         // this.locations = locationsJSON.locations;
+         console.log(locations);
+          $.each( locations, function( key, value ) {
+              UMSS.addMarkers(value);
+
+          });
+          UMSS.showMarkers();
     },
 
     getCoords : function() {

@@ -13,6 +13,9 @@ $ ->
 
   places = gon.places
   console.log places
+
+  UMSS.addMarkers_(places)
+  # UMSS.showMarkers()
 ###
   $('#map').click ->
     coords = UMSS.getCoords()

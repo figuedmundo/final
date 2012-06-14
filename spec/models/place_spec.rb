@@ -7,14 +7,18 @@
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  coord      :spatial({:no_co
+#  desc       :string(255)
+#  address    :string(255)
+#  id_user    :integer
 #
 
 require 'spec_helper'
 
 describe Place do
   
+  let!(:user) { FactoryGirl.create(:user) }
   before do
-    @place = Place.new(name: "Bar", address: "Jordan y Calama 1456", desc: "Ipsun Loren")
+    @place = user.places.build(name: "Bar", address: "Jordan y Calama 1456", desc: "Ipsun Loren")
     @place.lat = 1.0
     @place.lng = 1.0
   end
@@ -27,6 +31,7 @@ describe Place do
   it { should respond_to(:lng) }
   it { should respond_to(:address) }
   it { should respond_to(:desc) }
+  it { should respond_to(:user) }
 
 
   it { should be_valid }

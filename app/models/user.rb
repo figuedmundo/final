@@ -16,8 +16,10 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :password , :password_confirmation, :name, :last_name, :avatar
-  has_secure_password
   has_many :comments
+  has_many :places
+  has_secure_password
+  
   mount_uploader :avatar, AvatarUploader
 
   before_save { |user| user.email     = email.downcase }

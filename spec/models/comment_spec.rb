@@ -7,15 +7,18 @@
 #  user_id    :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  id_place   :integer
 #
 
 require 'spec_helper'
 
 describe Comment do
   
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, email: "user@ejem.com") }
+  let(:place) { FactoryGirl.create(:place) }
   before do
-    @comment = user.comments.build(content: "Lorem ipsun")
+    @comment = place.comments.build(content: "Lorem ipsun")
+    @comment.user = user
   end
 
   subject { @comment }
@@ -23,6 +26,8 @@ describe Comment do
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
+  it { should respond_to(:place) }
+
   its(:user) { should == user }
 
   it { should be_valid }

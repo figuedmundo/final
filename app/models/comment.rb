@@ -7,11 +7,13 @@
 #  user_id    :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  id_place   :integer
 #
 
 class Comment < ActiveRecord::Base
   attr_accessible :content
   belongs_to :user
+  belongs_to :place
 
   validates :user_id, presence: true
   validates :content, presence: { message: "No puede estar en blanco" },
