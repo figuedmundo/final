@@ -42,9 +42,27 @@ module SessionsHelper
     end
   end
 
-  # def current_view
+  def set_place(place)
+    session[:place_id] = place.id
+    current_place = place
+  end
+
+  def current_place=(place)
+    @current_place = place
+  end
+
+  def current_place
+    @current_place ||= place_from_session
+  end
+
+  def current_view=(view)
+    # @current_view = view
+  end
+
+  def current_view
     
-  # end
+  end
+
 
   private
 
@@ -55,5 +73,10 @@ module SessionsHelper
 
     def clear_return_to
       session.delete(:return_to)
+    end
+
+    def place_from_session
+      place_id = session[:place_id]
+      Place.find_by_id(place_id) unless place_id.nil?
     end
 end

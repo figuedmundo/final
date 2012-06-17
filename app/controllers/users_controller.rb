@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: :destroy
   before_filter :not_loged_in, only: [:new, :create]
+  before_filter :set_places, only: [:show, :perfil, :index]
 
   def new
     @title = "Registro"
@@ -83,6 +84,10 @@ class UsersController < ApplicationController
 
     def not_loged_in
       redirect_to root_path if loged_in?
+    end
+
+    def set_places
+      @places = Place.all
     end
 end
 

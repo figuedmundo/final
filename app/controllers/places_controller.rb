@@ -23,6 +23,10 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    @comment = @place.comments.build
+    # session[:place_id] = @place.id
+    set_place @place
+    
     gon.place_info = @place.name
     gon.x = @place.coord_geographic.x
     gon.y = @place.coord_geographic.y

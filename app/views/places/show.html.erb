@@ -1,6 +1,6 @@
    <section id="col-izq">
        <!-- columna izquierda - foto del usuario o lugar  y una pequenia descripcion -->
-      <%# render 'shared/col_izq' %>
+      <%= render 'shared/col_izq' %>
       
    </section><!-- 
 --><section id="col-central">
@@ -14,11 +14,17 @@
           </h3>                
       </header>
 
+      <div class="add-comment" id="add-comment">
+        <%= render 'shared/comment_form' %>
+      </div>
+
       <article id="show_place" class="perfil">
         <div id="map"></div>
       </article>
 
-      <%= @place.coord_geographic %>
+      <% if @place.comments.any? %>
+        <%= render @place.comments %>
+      <% end %>
       <%# @place.coord_geographic.x %>
       <%# @place.coord_geographic.y %>
 

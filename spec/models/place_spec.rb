@@ -9,7 +9,7 @@
 #  coord      :spatial({:no_co
 #  desc       :string(255)
 #  address    :string(255)
-#  id_user    :integer
+#  user_id    :integer
 #
 
 require 'spec_helper'

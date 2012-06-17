@@ -1,5 +1,14 @@
  <article class="comentario" >
   <p>
     <%= comment.content %>
+    <strong>
+      <%= comment.id %>
+    <p>
+    <%= comment.place.name unless comment.place.nil? %>
+    </p>
+    <p>
+    <%= comment.user.id  unless comment.user.nil?  %>
+    </p>
+    </strong>
   </p>
 </article>

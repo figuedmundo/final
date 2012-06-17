@@ -1,13 +1,14 @@
 <header id="header-izq">
     <div class="in-header-izq">
         <div class="cell-foto">
-          <%= image_tag @user.avatar_url(:thumb), class: "anchor-cell-foto" %>
+          <% view = @user  || current_user %>
+          <%= image_tag view.avatar_url(:thumb), class: "anchor-cell-foto" %>
         </div>
-        <div class="cell-usuario"><%= link_to @user.name, @user, class: "anchor-cell-usuario" %></div>
+        <div class="cell-usuario"><%= link_to view.name, view, class: "anchor-cell-usuario" %></div>
     </div>
 </header>
 
 <aside id="datos-usuario-izq">
     <!-- no se si esto se va a quedar -->
-    <%= @user.email %>
+    <%= view.email %>
 </aside>
