@@ -5,10 +5,11 @@ describe "Comment Pages" do
   subject { page }
   
   let(:user) { FactoryGirl.create(:user) }
+  let(:place) { FactoryGirl.create(:place, user: user) }
   before { log_in user }
 
   describe "comment creation" do
-    before { visit user_path(user) }
+    before { visit place_path(place) }
 
     describe "with invalid info" do
       it "should not create a commet" do

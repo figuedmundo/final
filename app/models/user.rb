@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password , :password_confirmation, :name, :last_name, :avatar
   has_many :comments
   has_many :places
+  has_many :photos
   has_secure_password
   
   mount_uploader :avatar, AvatarUploader

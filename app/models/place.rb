@@ -16,6 +16,8 @@ class Place < ActiveRecord::Base
   attr_accessible :name, :lat, :lng, :desc, :address
   belongs_to :user
   has_many :comments
+  has_many :photos
+
   attr_accessor :lat, :lng
 
   before_save :create_coord

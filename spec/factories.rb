@@ -19,7 +19,7 @@ FactoryGirl.define do
     lat   1.01
     lng   1.01
     # coord "POINT(12.210 21.01)"
-    user
+    # user
   end
 
   factory :comment do

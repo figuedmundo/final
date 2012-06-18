@@ -32,6 +32,8 @@ describe Place do
   it { should respond_to(:address) }
   it { should respond_to(:desc) }
   it { should respond_to(:user) }
+  it { should respond_to(:photos) }
+
 
 
   it { should be_valid }
