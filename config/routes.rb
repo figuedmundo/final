@@ -1,13 +1,14 @@
 FinalU::Application.routes.draw do
 
-  # get "places/new"
-
-  # get "places/show"
+  
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, only: [:create, :destroy]
-  resources :places
+ 
+  resources :places do
+    resources :photos, only: [:index, :new, :create, :destroy]
+  end
 
   root :to => 'simple_pages#home'
 

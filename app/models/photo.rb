@@ -4,6 +4,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   mount_uploader :image, ImageUploader
 
+  validates :desc, presence: { message: "la descripcion no puede estar en blanco"}
 
 
 end

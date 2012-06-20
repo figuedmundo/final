@@ -1,14 +1,14 @@
+ <% if comment.content %>
  <article class="comentario" >
   <p>
     <%= comment.content %>
     <strong>
-      <%= comment.id %>
     <p>
-    <%= comment.place.name unless comment.place.nil? %>
-    </p>
-    <p>
-    <%= comment.user.id  unless comment.user.nil?  %>
+    id:<%= comment.id %> 
+    -place_name:<%= comment.place.name unless comment.place.nil? %>
+    -user_id:<%= comment.user.id  unless comment.user.nil?  %>
     </p>
     </strong>
   </p>
 </article>
+<% end -%>

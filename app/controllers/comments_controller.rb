@@ -5,7 +5,9 @@ class CommentsController < ApplicationController
   def create
     # @place = Place.find_by_id(params[:id])
     # current_view = 
+    # @place = Place.find(params[:place_id])
     @comment = current_place.comments.build(params[:comment])
+    # @comment = current_place.comments.build(params[:comment])
     @comment.user = current_user
     if @comment.save
       flash[:success] = "Comentario creado"

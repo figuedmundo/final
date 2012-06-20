@@ -9,10 +9,13 @@
       <%= render 'shared/menu_principal' %>
 
       <header id="titulo-central" >
-          <h3>
+          <h2>
              <%= @place.name %>
-          </h3>                
+          </h2>                
+        
+        <%= link_to "Add image", new_place_photo_path(@place), class: "editar-perfil" %>
       </header>
+
 
       <div class="add-comment" id="add-comment">
         <%= render 'shared/comment_form' %>
@@ -22,9 +25,13 @@
         <div id="map"></div>
       </article>
 
-      <% if @place.comments.any? %>
-        <%= render @place.comments %>
+      <% if @comments.any? %>
+        <%= render @comments %>
       <% end %>
+
+      <% if @place.photos.any? %>
+        <%= render @place.photos %>
+      <% end -%>
       <%# @place.coord_geographic.x %>
       <%# @place.coord_geographic.y %>
 

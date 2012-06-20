@@ -24,6 +24,7 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
     @comment = @place.comments.build
+    @comments = @place.comments
     # session[:place_id] = @place.id
     set_place @place
     

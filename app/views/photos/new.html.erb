@@ -1,0 +1,33 @@
+   <section id="col-izq">
+       <!-- columna izquierda - foto del usuario o lugar  y una pequenia descripcion -->
+      <%= render 'shared/col_izq' %>
+      
+   </section><!-- 
+--><section id="col-central">
+       <!-- colmuna central - contenida de la pagina -->
+
+      <%# render 'shared/menu_principal' %>
+
+      <header id="titulo-central" >
+          <h2>
+             Nueva foto
+          </h2>
+      </header>
+
+      <article id="new_photo" class="perfil">
+
+        <%= simple_form_for(@photo, url: place_photos_path(@place)) do |f| %>
+
+          <%= f.input :image %>
+          <%= f.input :desc %>
+          
+          <%= f.button :submit, value: "Aceptar" %>
+
+        <% end %>
+      </article>
+   </section><!--
+--><section id="col-der">
+       <!-- columna derecha - links a lugares favoritos y recomendados -->
+    <%= render 'shared/col_der' %>
+    
+   </section>
