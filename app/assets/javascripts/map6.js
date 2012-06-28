@@ -4,6 +4,7 @@ var UMSS = {
     markers : Array(),
     marker : null,
     polyline : null,
+    ruta : new google.maps.MVCArray(),
     locations : null,
     // overlay: null,
     coord : null,
@@ -19,6 +20,13 @@ var UMSS = {
        }
        
        this.map = new google.maps.Map( $(opt.selector || "#map").get(0), options ); 
+
+       this.polyline = new google.maps.Polyline({
+            path: this.ruta,
+            strokeColor: "#ff0000",
+            strokeOpacity: 0.6,
+            strokeWeight: 2
+        });
     },
 
     addMarker : function( object_ ){
@@ -32,7 +40,7 @@ var UMSS = {
             UMSS.marker.setMap(UMSS.map);
             
             // maneja el click sobre un marker y muestra el InfoWindow
-            google.maps.event.addListener( marker, 'click' , function() {
+            google.maps.event.addListener( UMSS.marker, 'click' , function() {
                 
                 if (!UMSS.infowindow) {
                     UMSS.infowindow = new google.maps.InfoWindow();
@@ -121,6 +129,29 @@ var UMSS = {
          $.each(this.markers, function(key, value) {
             value.setMap(null);
         });
+    },
+
+    addPolyline : function(list_) {
+      $.each(list_, function(key, p){
+        UMSS.polyline.getPath().push(new google.maps.LatLng( p.lat, p.lon  ))
+      });
+      UMSS.showPolyline();
+      // return UMSS.polyline.getPath();
+    },
+
+    // addPolyline : function(array_){
+    //   $.each(array_, function(value) {
+    //     UMSS.polyline.getPath().push( value );
+    //   });
+    //   UMSS.showPolyline();
+    // },
+
+    showPolyline : function(){
+        UMSS.polyline.setMap(UMSS.map);
+    },
+
+    hidePolyline : function(){
+        UMSS.polyline.setMap(null);
     },
 
     addOverlay : function ( bounds , image ){

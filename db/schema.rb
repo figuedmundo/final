@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(:version => 20120618042930) do
 
   create_table "places", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
-    t.spatial  "coord",      :limit => {:no_constraints=>true}
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+    t.spatial  "coord",      :limit => {:srid=>3785, :type=>"point"}
     t.string   "desc"
     t.string   "address"
     t.integer  "user_id"

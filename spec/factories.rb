@@ -17,7 +17,7 @@ FactoryGirl.define do
     address "Bar y Baz"
     desc  "Ipsun loren"
     lat   1.01
-    lng   1.01
+    lon   1.01
     # coord "POINT(12.210 21.01)"
     # user
   end

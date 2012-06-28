@@ -20,7 +20,7 @@ describe Place do
   before do
     @place = user.places.build(name: "Bar", address: "Jordan y Calama 1456", desc: "Ipsun Loren")
     @place.lat = 1.0
-    @place.lng = 1.0
+    @place.lon = 1.0
   end
 
   subject { @place }
@@ -28,7 +28,7 @@ describe Place do
   it { should respond_to(:name) }
   it { should respond_to(:coord) }
   it { should respond_to(:lat) }
-  it { should respond_to(:lng) }
+  it { should respond_to(:lon) }
   it { should respond_to(:address) }
   it { should respond_to(:desc) }
   it { should respond_to(:user) }

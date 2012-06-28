@@ -22,5 +22,11 @@ namespace :db do
         user.comments.create!(content: content)
       end
     end
+
+    place = Place.create!(name: "Baquita", lat: -17.39352687649887, lon: -66.14663360418967, 
+                          desc: "Se sirven refrescos", address: "frente a memi")
+    place.user = admin
+    place.save
+
   end
 end

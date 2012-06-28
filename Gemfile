@@ -14,6 +14,7 @@ gem 'activerecord-postgis-adapter', '0.4.3'
 # user Rails variables in js
 gem 'rabl'
 gem 'gon', '3.0.4'
+gem 'squeel'
 
 
 # Gems used only for assets and not required

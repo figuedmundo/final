@@ -13,12 +13,12 @@
 #
 
 class Place < ActiveRecord::Base
-  attr_accessible :name, :lat, :lng, :desc, :address
+  attr_accessible :name, :lat, :lon, :desc, :address
   belongs_to :user
   has_many :comments
   has_many :photos
 
-  attr_accessor :lat, :lng
+  attr_accessor :lat, :lon
 
   before_save :create_coord
 
@@ -35,7 +35,7 @@ class Place < ActiveRecord::Base
                     on: :create
 
 
-  validates :lng,   numericality: true,
+  validates :lon,   numericality: true,
                     length: { maximum: 25 },                                    
                     on: :create
   
@@ -44,10 +44,10 @@ class Place < ActiveRecord::Base
 
   # To interact in projected coordinates, just use the "coord"
   # attribute directly.
-  # def latlng_projected
+  # def coord_projected
   #   self.coord
   # end
-  # def latlng_projected=(value)
+  # def coord_projected=(value)
   #   self.coord = value
   # end
 
@@ -64,7 +64,7 @@ class Place < ActiveRecord::Base
   private
 
     def create_coord
-      self.coord = FACTORY.point(lat, lng).projection
+      self.coord = FACTORY.point(lon, lat).projection
     end
 
 end

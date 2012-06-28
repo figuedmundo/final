@@ -11,20 +11,20 @@ $ ->
 
   UMSS.init();
 
-  places = gon.places
-  console.log places
-
-  UMSS.addMarkers_(places)
-  # UMSS.showMarkers()
-###
   $('#map').click ->
     coords = UMSS.getCoords()
     $('#place_lat').val(coords.lat)
-    $('#place_lng').val(coords.lng)
+    $('#place_lon').val(coords.lng)
     UMSS.addMarker(coords)
     UMSS.showMarkers()
     # alert 'hola'
 
+  # places = gon.places
+  # console.log places
+
+  # UMSS.addMarkers_(places)
+  
+###
   if gon
     marker = { lat: gon.x, lng: gon.y, info: gon.place_info }
     UMSS.addMarkers(marker)
