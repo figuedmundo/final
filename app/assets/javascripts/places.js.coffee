@@ -11,14 +11,26 @@ $ ->
 
   UMSS.init();
 
-  $('#map').click ->
+  $('#finder_place #map').click ->
     coords = UMSS.getCoords()
-    $('#place_lat').val(coords.lat)
-    $('#place_lon').val(coords.lng)
-    UMSS.addMarker(coords)
-    UMSS.showMarkers()
-    # alert 'hola'
+    $('#lon_s').val(coords.lng)
+    $('#lat_s').val(coords.lat)
+    $('#lon_t').val(coords.lng)
+    $('#lat_t').val(coords.lat)
 
+  poly = gon.poly
+  UMSS.addPolyline poly
+  # $('#map').click ->
+  #   coords = UMSS.getCoords()
+  #   $('#place_lat').val(coords.lat)
+  #   $('#place_lon').val(coords.lng)
+  #   UMSS.addMarker(coords)
+  #   UMSS.showMarkers()
+      # alert 'hola'
+
+
+###  
+###
   # places = gon.places
   # console.log places
 
@@ -34,6 +46,8 @@ $ ->
   # google.maps.event.addListener(UMSS.map, 'click', function(event)
   #   alert event.latLng
   # 
+
+
 
 class NewPlace
   constructor: ->

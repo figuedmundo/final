@@ -3,11 +3,12 @@ var UMSS = {
     infowindow : null,
     markers : Array(),
     marker : null,
-    polyline : null,
-    ruta : new google.maps.MVCArray(),
+    // polyline : null,
+    ruta : [],
     locations : null,
     // overlay: null,
     coord : null,
+
     
     init : function( opt_ ) {
         var opt = opt_ || {};
@@ -21,12 +22,7 @@ var UMSS = {
        
        this.map = new google.maps.Map( $(opt.selector || "#map").get(0), options ); 
 
-       this.polyline = new google.maps.Polyline({
-            path: this.ruta,
-            strokeColor: "#ff0000",
-            strokeOpacity: 0.6,
-            strokeWeight: 2
-        });
+
     },
 
     addMarker : function( object_ ){
@@ -132,11 +128,25 @@ var UMSS = {
     },
 
     addPolyline : function(list_) {
-      $.each(list_, function(key, p){
-        UMSS.polyline.getPath().push(new google.maps.LatLng( p.lat, p.lon  ))
+      $.each(list_, function(key, value){
+        way = new google.maps.MVCArray()
+        $.each(value, function(key, p){
+          latLon = new google.maps.LatLng( p.lat, p.lon  )
+          way.push(latLon)
+        });
+        UMSS.setPolyline(way)
       });
-      UMSS.showPolyline();
-      // return UMSS.polyline.getPath();
+    },
+
+    setPolyline : function(way) {
+      polyline = new google.maps.Polyline({
+        path: way,
+        strokeColor: "#ff0000",
+        strokeOpacity: 0.6,
+        strokeWeight: 2
+      });
+      UMSS.ruta.push(polyline)
+      polyline.setMap(UMSS.map);
     },
 
     // addPolyline : function(array_){
@@ -147,11 +157,19 @@ var UMSS = {
     // },
 
     showPolyline : function(){
-        UMSS.polyline.setMap(UMSS.map);
+      $.each(UMSS.ruta, function(k, p){
+        p.setMap(UMSS.map);
+      });   
+
+
     },
 
     hidePolyline : function(){
-        UMSS.polyline.setMap(null);
+        // UMSS.polyline.setMap(null);
+      $.each(UMSS.ruta, function(k, p){
+        p.setMap(null);
+        // console.log(p)
+      });   
     },
 
     addOverlay : function ( bounds , image ){

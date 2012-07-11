@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
   before_filter :loged_in_user
+  # include PlacesHelper
   
   def new
     @place = Place.new
@@ -41,5 +42,25 @@ class PlacesController < ApplicationController
 
   def finder
     @title = "Finder"
+
+    if params[:lon_s] && params[:lat_s]
+      # @costo = "#{params[:lon_s]}, #{params[:lat_s]},#{params[:lon_t]},#{params[:lat_t]}"
+
+      
+      way  = Way.new
+      # res = way.path_cost_from(lon,lat,lon,lat)
+      res = Way.path_cost_from(params[:lon_s].to_f, params[:lat_s].to_f, 
+                               params[:lon_t].to_f, params[:lat_t].to_f)
+
+      @costo = res[:cost]
+      gon.poly = Way.get_way(res[:edges])
+      # respond_to  do |format|
+      #   format.js
+      # end
+    end
+    # @costo = res
   end
+
+  private
+
 end

@@ -16,6 +16,22 @@
 
       <article id="finder_place" class="perfil">
         <div id="map"></div>
+      
+        <div class="form_finder">
+          <%= form_tag finder_path do |f| %>
+            
+            <%= text_field_tag :lon_s %>
+            <%= text_field_tag :lat_s %>
+
+            <%= text_field_tag :lon_t %>
+            <%= text_field_tag :lat_t %>
+
+            <%= submit_tag "Buscar ruta" %>
+          <% end -%>
+        </div>
+
+
+      <%= @costo %>
       </article>
 
    </section><!--
