@@ -15,6 +15,7 @@ gem 'activerecord-postgis-adapter', '0.4.3'
 gem 'rabl'
 gem 'gon', '3.0.4'
 gem 'squeel'
+gem 'pg_search'
 
 
 # Gems used only for assets and not required

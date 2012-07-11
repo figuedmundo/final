@@ -23,15 +23,17 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.find(params[:id])
-    @comment = @place.comments.build
+    @place    = Place.find(params[:id])
+    @comment  = @place.comments.build
     @comments = @place.comments
     # session[:place_id] = @place.id
     set_place @place
     
     gon.place_info = @place.name
-    gon.x = @place.coord_geographic.x
-    gon.y = @place.coord_geographic.y
+    gon.rabl "app/views/places/show.json.rabl", as: "place"
+
+    # gon.x = @place.coord_geographic.x
+    # gon.y = @place.coord_geographic.y
   end
 
   def index
@@ -43,12 +45,12 @@ class PlacesController < ApplicationController
   def finder
     @title = "Finder"
 
+    @places = Place.text_search(params[:query])
+
     if params[:lon_s] && params[:lat_s]
       # @costo = "#{params[:lon_s]}, #{params[:lat_s]},#{params[:lon_t]},#{params[:lat_t]}"
 
       
-      way  = Way.new
-      # res = way.path_cost_from(lon,lat,lon,lat)
       res = Way.path_cost_from(params[:lon_s].to_f, params[:lat_s].to_f, 
                                params[:lon_t].to_f, params[:lat_t].to_f)
 

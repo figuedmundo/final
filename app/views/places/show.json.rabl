@@ -1,5 +1,5 @@
 object  @place
-attributes :id, :name
+attributes :id, :name, :desc, :address
 
-node(:lat) { |place| place.coord_geographic.x }
-node(:lng) { |place| place.coord_geographic.y }
+node(:lng) { |place| place.coord_geographic.x }
+node(:lat) { |place| place.coord_geographic.y }

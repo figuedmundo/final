@@ -18,6 +18,25 @@
         <div id="map"></div>
       
         <div class="form_finder">
+          <!-- <h4>destino</h4> -->
+          <%= form_tag finder_path, method: :get do %>
+            <%= text_field_tag :query, params[:query] %>
+            <%= submit_tag "buscar", name: nil %>
+          <% end -%>
+
+        </div>
+
+        <div id="places">
+          <ul>
+            <% @places.each do |place| %>
+              <li>
+                <%= radio_button_tag(:place, "#{place.coord_geographic.x} #{place.coord_geographic.y}") %>
+                <%= label_tag(:place, place.name.titleize) %>                
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
           <%= form_tag finder_path do |f| %>
             
             <%= text_field_tag :lon_s %>
@@ -28,7 +47,6 @@
 
             <%= submit_tag "Buscar ruta" %>
           <% end -%>
-        </div>
 
 
       <%= @costo %>

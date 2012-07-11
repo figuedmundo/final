@@ -51,14 +51,15 @@ var UMSS = {
     },
 
     addMarkers : function( object ){
-                console.log(object);
+            console.log(object);
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng( object.lat, object.lng  ),
-                // map: this.map,
+                map: UMSS.map,
                 // icon: 'imagenes/'+object.markerType+'.png'
-                // title: 'Posicion '+key
+                title: 'Posicion '+ object.id
             });
-            this.markers.push(marker);
+            UMSS.markers.push(marker);
+            // console.log(UMSS.markers);
             
             // maneja el click sobre un marker y muestra el InfoWindow
             google.maps.event.addListener( marker, 'click' , function() {
@@ -72,7 +73,6 @@ var UMSS = {
                 UMSS.infowindow.open(UMSS.map, marker);
             });
 
-            // this.polyline.getPath().push( marker.position );
     },
 
     addMarkers_ : function(locations){
@@ -82,7 +82,7 @@ var UMSS = {
               UMSS.addMarkers(value);
 
           });
-          UMSS.showMarkers();
+          // UMSS.showMarkers();
     },
 
     getCoords : function() {

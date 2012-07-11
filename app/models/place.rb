@@ -22,6 +22,10 @@ class Place < ActiveRecord::Base
 
   before_save :create_coord
 
+  include PgSearch
+  pg_search_scope :seach, against: [:name, :desc],
+                          using: { tsearch: {dictionary: "spanish"} }
+
 
   FACTORY = RGeo::Geographic.simple_mercator_factory
   set_rgeo_factory_for_column(:coord, FACTORY.projection_factory)
@@ -58,6 +62,16 @@ class Place < ActiveRecord::Base
   end
   def coord_geographic=(value)
     self.coord = FACTORY.project(value)
+  end
+
+
+  def self.text_search(query)
+    if query.present?
+      # where("name ilike :q  or  desc  ilike  :q", q: "%#{query}")
+      seach(query)
+    else
+      scoped
+    end
   end
 
 
