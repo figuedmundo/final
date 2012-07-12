@@ -5,7 +5,7 @@ class Way < ActiveRecord::Base
   set_rgeo_factory_for_column(:the_geom, FACTORY.projection_factory)
 
 
-  def add_vertices
+  def self.add_vertices
     connection = Way.connection
     connection.exec_query("SELECT assign_vertex_id('ways', 0.00001, 'the_geom', 'gid');")
     Way.clear_active_connections!
