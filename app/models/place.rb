@@ -23,7 +23,7 @@ class Place < ActiveRecord::Base
   before_save :create_coord
 
   include PgSearch
-  pg_search_scope :seach, against: [:name, :desc],
+  pg_search_scope :search, against: [:name, :desc, :address],
                           using: { tsearch: {dictionary: "spanish"} }
 
 
@@ -68,7 +68,7 @@ class Place < ActiveRecord::Base
   def self.text_search(query)
     if query.present?
       # where("name ilike :q  or  desc  ilike  :q", q: "%#{query}")
-      seach(query)
+      search(query)
     else
       scoped
     end
