@@ -13,7 +13,7 @@ var UMSS = {
     init : function( opt_ ) {
         var opt = opt_ || {};
         var options = {
-           zoom: opt.zoom || 17,
+           zoom: opt.zoom || 16,
            center: new google.maps.LatLng(  (opt.lat || -17.3937285 ) , (opt.lng ||  -66.1457475) ),
            mapTypeId: google.maps.MapTypeId.ROADMAP    ,
            disableDefaultUI: true,

@@ -1,0 +1,8 @@
+<ul>
+  <% @places.each do |place| %>
+    <li>
+      <%= radio_button_tag(:place, "#{place.coord_geographic.x} #{place.coord_geographic.y}") %>
+      <%= label_tag(:place, place.name.titleize) %>                
+    </li>
+  <% end %>
+</ul>

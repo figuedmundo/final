@@ -18,37 +18,28 @@
         <div id="map"></div>
       
         <div class="form_finder">
-          <!-- <h4>destino</h4> -->
-          <%= form_tag finder_path, method: :get do %>
+          <%= form_tag({controller: "places", action: "search"},  remote: true) do %>
             <%= text_field_tag :query, params[:query] %>
-            <%= submit_tag "buscar", name: nil %>
+            <%= submit_tag "buscar destino", name: nil %>
           <% end -%>
         </div>
 
-        <div id="places">
-          <ul>
-            <% @places.each do |place| %>
-              <li>
-                <%= radio_button_tag(:place, "#{place.coord_geographic.x} #{place.coord_geographic.y}") %>
-                <%= label_tag(:place, place.name.titleize) %>                
-              </li>
-            <% end %>
-          </ul>
+        <div id="query_places">
+          <%= render 'query_places' if @places %>
         </div>
+          
+        <%# render 'found_place' %>
+          <%= form_tag({controller: "places", action: "found"}, remote: true ) do |f| %>
 
-          <%= form_tag finder_path do |f| %>
             
-            <%= text_field_tag :lon_s %>
-            <%= text_field_tag :lat_s %>
+            <%= hidden_field_tag :lon_s %>
+            <%= hidden_field_tag :lat_s %>
 
-            <%= text_field_tag :lon_t %>
-            <%= text_field_tag :lat_t %>
+            <%= hidden_field_tag :lon_t %>
+            <%= hidden_field_tag :lat_t %>
 
-            <%= submit_tag "Buscar ruta" %>
+            <%= submit_tag "Buscar ruta", id: 'buscar_ruta' %>
           <% end -%>
-
-
-      <%= @costo %>
       </article>
 
    </section><!--

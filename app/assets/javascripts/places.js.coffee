@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$ ->
+jQuery ->
+  # $('').pjax('[data-pjax-container]')
   # $('#new_place') ->
     # new NewPlace()
 
@@ -29,14 +30,20 @@ $ ->
 
 
   
-  $('#finder_place #places').click ->
+  $('#finder_place #query_places').click ->
     target_coord = $('input[name="place"]:checked').val()
     $('#lon_t').val target_coord.split(" ")[0]
     $('#lat_t').val(target_coord.split(" ")[1])
 
-  if gon.poly?
-    poly = gon.poly
-    UMSS.addPolyline poly
+  $('#finder_place #buscar_ruta').click ->
+    if $('#lon_s').val() == "" and $('#lon_t').val() == ""
+      return false
+    
+
+# if gon?
+  # if gon.poly?
+  #   poly = gon.poly
+  #   UMSS.addPolyline poly
   
   if gon.places?
     places = gon.places

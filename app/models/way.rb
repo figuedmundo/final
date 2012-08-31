@@ -17,12 +17,12 @@ class Way < ActiveRecord::Base
     connection = Way.connection
     s = connection.select_value("select find_nearest_node_within_distance( '#{point_source.to_s}' , 2000.0, 'ways' )")
     t = connection.select_value("select find_nearest_node_within_distance( '#{point_target.to_s}' , 2000.0, 'ways' )")
-    all = connection.select_all("SELECT  * from  shortest_path('select gid as id, source::integer, 
+    res = connection.select_all("SELECT  * from  shortest_path('select gid as id, source::integer, 
                                 target::integer, dist::double precision as cost from ways', 
                                 #{s.to_i}, #{t.to_i}, false, false)")
     Way.clear_active_connections!
 
-    get_edges_cost all
+    get_edges_cost res
   end
 
   def self.get_way(lista)
