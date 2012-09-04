@@ -10,21 +10,15 @@
 
       <header id="titulo-central" >
           <h3>
-            Nuevo lugar 
+            Crear nuevo tipo de lugar
           </h3>                
       </header>
 
-      <article id="new_place" class="perfil">
-        <div id="map"></div>
+      <article  class="perfil">
 
-        <%= simple_form_for @place do |f| %>
+        <%= simple_form_for @type_place do |f| %>
 
-          <%= f.input :lat %>
-          <%= f.input :lon %>
           <%= f.input :name %>
-          <%= f.input :address %>
-          <%# f.input :desc %>
-          <%= f.association :type_place %>
           <%= f.button :submit, value: "Crear lugar" %>
 
         <% end %>

@@ -1,5 +1,7 @@
 FinalU::Application.routes.draw do
 
+  get "type_places/new"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, only: [:create, :destroy]
@@ -7,6 +9,7 @@ FinalU::Application.routes.draw do
   resources :places do
     resources :photos, only: [:index, :new, :create, :destroy]
   end
+  resources :type_places, only: [:new, :create, :destroy]
 
   root :to => 'simple_pages#home'
 

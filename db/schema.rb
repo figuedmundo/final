@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120628195501) do
+ActiveRecord::Schema.define(:version => 20120903041423) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -34,15 +34,25 @@ ActiveRecord::Schema.define(:version => 20120628195501) do
 
   create_table "places", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
-    t.spatial  "coord",      :limit => {:srid=>3785, :type=>"point"}
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
+    t.spatial  "coord",         :limit => {:srid=>3785, :type=>"point"}
     t.string   "desc"
     t.string   "address"
     t.integer  "user_id"
+    t.integer  "type_place_id"
   end
 
   add_index "places", ["coord"], :name => "index_places_on_coord", :spatial => true
+  add_index "places", ["type_place_id"], :name => "index_places_on_type_place_id"
+
+  create_table "type_places", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "type_places", ["name"], :name => "index_type_places_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email"

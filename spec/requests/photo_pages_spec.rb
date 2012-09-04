@@ -1,11 +1,10 @@
 require 'spec_helper'
 
-describe "PhotoPages" do
-  describe "GET /photo_pages" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get photo_pages_index_path
-      response.status.should be(200)
-    end
+describe "Photo Pages" do
+
+  subject { page }
+  
+  describe "new photo page" do
+    
   end
 end

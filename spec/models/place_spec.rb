@@ -17,10 +17,13 @@ require 'spec_helper'
 describe Place do
   
   let!(:user) { FactoryGirl.create(:user) }
+  let(:type_place) { FactoryGirl.create(:type_place) }
+
   before do
     @place = user.places.build(name: "Bar", address: "Jordan y Calama 1456", desc: "Ipsun Loren")
     @place.lat = 1.0
     @place.lon = 1.0
+    @place.type_place = type_place
   end
 
   subject { @place }
@@ -33,6 +36,7 @@ describe Place do
   it { should respond_to(:desc) }
   it { should respond_to(:user) }
   it { should respond_to(:photos) }
+  it { should respond_to(:type_place) }
 
 
 
@@ -45,6 +49,11 @@ describe Place do
   
   describe "when desc is too long" do
     before { @place.address = "a"*255 }
+    it { should_not be_valid }
+  end
+
+  describe "type place must be present" do
+    before { @place.type_place = nil }
     it { should_not be_valid }
   end
 

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: ways
+#
+#  gid        :integer         not null, primary key
+#  name       :string(255)
+#  dist       :float
+#  source     :integer
+#  target     :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  the_geom   :spatial({:srid=
+#
+
 class Way < ActiveRecord::Base
   attr_accessible :dist, :name
 

@@ -28,5 +28,9 @@ FactoryGirl.define do
     # place
   end
 
+  factory :type_place do
+    name "foo"
+  end
+
 end
 

@@ -13,10 +13,11 @@
 #
 
 class Place < ActiveRecord::Base
-  attr_accessible :name, :lat, :lon, :desc, :address
+  attr_accessible :name, :lat, :lon, :desc, :address, :type_place_id
   belongs_to :user
   has_many :comments
   has_many :photos
+  belongs_to :type_place
 
   attr_accessor :lat, :lon
 
@@ -24,7 +25,8 @@ class Place < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :search, against: [:name, :desc, :address],
-                          using: { tsearch: {dictionary: "spanish"} }
+                          using: {tsearch: {dictionary: "spanish"}},
+                          associated_against: { type_place: :name }
 
 
   FACTORY = RGeo::Geographic.simple_mercator_factory
@@ -45,6 +47,7 @@ class Place < ActiveRecord::Base
   
   validates :address, length: { maximum: 35, message: "muy largo, solo %{count} letras" }
   validates :desc,    length: { maximum: 250, message: "muy largo, solo %{count} letras" }
+  validates :type_place_id, presence: { message: "no puedes saltarte esto"}
 
   # To interact in projected coordinates, just use the "coord"
   # attribute directly.
