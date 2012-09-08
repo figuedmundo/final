@@ -2,7 +2,7 @@
     <div class="in-header-izq">
         <div class="cell-foto">
           <% view = @user  || current_user %>
-          <%= image_tag view.avatar_url(:thumb), class: "anchor-cell-foto" %>
+          <%= image_tag view.avatar_url(:avatar), class: "anchor-cell-foto" %>
         </div>
         <div class="cell-usuario"><%= link_to view.name, view, class: "anchor-cell-usuario" %></div>
     </div>

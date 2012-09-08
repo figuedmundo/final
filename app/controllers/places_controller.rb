@@ -24,6 +24,7 @@ class PlacesController < ApplicationController
   end
 
   def show
+    @places = Place.all
     @place    = Place.find(params[:id])
     @comment  = @place.comments.build
     @comments = @place.comments
