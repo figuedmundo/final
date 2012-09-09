@@ -11,6 +11,8 @@ jQuery ->
   #   new ShowPlace()
 
   UMSS.init();
+  new Slider()
+
 
   $('#new_place #map').click ->
     coords = UMSS.getCoords()
@@ -63,7 +65,14 @@ jQuery ->
   #   alert event.latLng
   # 
 
-
+class Slider
+  constructor: ->
+    $('#slider').nivoSlider({
+        effect: 'fade'
+        pauseTime: 5000
+        # directionNav: false
+        controlNav: false
+      })
 
 class NewPlace
   constructor: ->

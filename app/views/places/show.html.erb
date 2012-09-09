@@ -18,25 +18,26 @@
 
       <article id="show_place" class="perfil">
         <div id="map"></div>
-      </article>
 
-      <div class="add-comment" id="add-comment">
-        <%# render 'shared/comment_form' %>
-      </div>
+        <% if @place.photos.any? %>
+          <div class="place_photo slider-wrapper theme-default">
+            <div id="slider" class="nivoSlider">
+              <%= render "photos", photos: @place.photos %>
+            </div>
+          </div>
+        <% end -%>
 
-      <% if @place.photos.any? %>
-        <div class="place_photo perfil">
-          <%= render "photos", photos: @place.photos %>
+        <div class="add-comment" id="add-comment">
+          <%= render 'shared/comment_form' %>
         </div>
-      <% end -%>
-
-      <% if @comments.any? %>
-        <%= render @comments %>
-      <% end %>
+        <% if @comments.any? %>
+          <%= render @comments %>
+        <% end %>
 
       <%# @place.coord_geographic.x %>
       <%# @place.coord_geographic.y %>
 
+      </article>
    </section><!--
 --><section id="col-der">
        <!-- columna derecha - links a lugares favoritos y recomendados -->
