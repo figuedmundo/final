@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.nivo.slider
+//= require infobox
 //= require_tree .
 
 //= require jquery.pjax

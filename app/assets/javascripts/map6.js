@@ -8,6 +8,7 @@ var UMSS = {
     locations : null,
     // overlay: null,
     coord : null,
+    infobox : null,
 
     
     init : function( opt_ ) {
@@ -42,7 +43,7 @@ var UMSS = {
                     UMSS.infowindow = new google.maps.InfoWindow();
                 };
 
-                UMSS.infowindow.setContent(object_.info);
+                UMSS.infowindow.setContent("<%= 'hola mundo from rails' %>");
                 
                 UMSS.infowindow.open(UMSS.map, marker);
             });
@@ -64,13 +65,67 @@ var UMSS = {
             // maneja el click sobre un marker y muestra el InfoWindow
             google.maps.event.addListener( marker, 'click' , function() {
                 
-                if (!UMSS.infowindow) {
-                    UMSS.infowindow = new google.maps.InfoWindow();
-                };
+                // if (!UMSS.infowindow) {
+                //     UMSS.infowindow = new google.maps.InfoWindow();
+                // };
+                // UMSS.infowindow.setContent(infowindowContent);
+                // UMSS.infowindow.open(UMSS.map, marker);
 
-                UMSS.infowindow.setContent(object.name);
-                
-                UMSS.infowindow.open(UMSS.map, marker);
+                var boxText = document.createElement("div");
+                // boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px;";
+/*                ibHtml =  "<div id='infobox' >"
+                ibHtml <<   "<div class='ib-left'>"
+                ibHtml <<     "<h4>"+object.name+" </h4>"
+                ibHtml <<   "</div>"
+                ibHtml <<   "<div class='ib-right'>"
+                ibHtml <<   "</div>"
+                ibHtml << "</div>"*/
+
+                ibHtml =  "<div id='infobox' >"
+                ibHtml +=   "<div class='ib-left'>"
+                ibHtml +=     "<a href='places/"+object.id+"'><h4>"+object.name+"</h4></a> "
+                if(object.telf !== undefined){
+                  ibHtml +=     "<p>telf: "+object.telf+"</p>"
+                }
+                if(object.desc !== undefined){
+                  ibHtml +=     "<p>"+object.desc+"</p>"
+                }
+                if(object.address !== undefined){
+                  ibHtml +=     "<p>"+object.address+"</p>"
+                }
+                ibHtml +=   "</div>"
+                if(object.photos !== undefined){
+                  ibHtml +=   "<div class='ib-right'>"
+                  ibHtml +=     "<img src="+object.photos[0].url+">"
+                  ibHtml +=   "</div>"
+                }
+                ibHtml += "</div>"
+
+                boxText.innerHTML = ibHtml
+
+                var myOptions = {
+                         // content: boxText
+                        disableAutoPan: false
+                        ,maxWidth: 0
+                        ,pixelOffset: new google.maps.Size(0, 0)
+                        ,zIndex: null
+                        ,boxStyle: { 
+                          // background: "url('tipbox.gif') no-repeat"
+                          opacity: 0.90
+                          ,width: "270px"
+                         }
+                        ,closeBoxMargin: "1px 1px 1px 1px"
+                        ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+                        ,infoBoxClearance: new google.maps.Size(1, 1)
+                        ,isHidden: false
+                        ,pane: "floatPane"
+                        ,enableEventPropagation: false
+                };
+                 if (!UMSS.infobox) {
+                    UMSS.infobox = new InfoBox(myOptions);
+                };
+                UMSS.infobox.setContent(boxText);
+                UMSS.infobox.open(UMSS.map, marker);
             });
 
     },
@@ -274,6 +329,19 @@ UMSSOverlay.prototype.opacity = function( opacity_ ){
 };
 
 
+function infoWC (title) {
+  
+}
+  
+  var infowindowContent = document.createElement('div');
+  // infowindow.setAttribute('id', 'infowindow');
+
+  var p = document.createElement('p');
+  p.innerHTML = 'hola mundo '; 
+
+  infowindowContent.appendChild(p);
+
+
 
 /*
 $(document).ready(function(){
@@ -311,3 +379,4 @@ $(document).ready(function(){
 });
 */
 // var primerPiso = new UMSS.UMSSOverlay();
+

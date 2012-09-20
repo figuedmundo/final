@@ -25,7 +25,7 @@
         </div>
 
         <div id="query_places">
-          <%= render 'query_places' if @places %>
+          <%= render partial: 'query_places', collection: @places, as: :place  %>
         </div>
           
         <%# render 'found_place' %>

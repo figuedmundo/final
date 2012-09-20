@@ -30,6 +30,12 @@ jQuery ->
     UMSS.addMarker(coords)
     UMSS.showMarkers()
 
+  $('#query_places').on 'click', '.json-place', ->
+    place = $(this).data('place')
+    console.log place
+    UMSS.addMarker(place)
+    UMSS.showMarkers()
+
 
   
   $('#finder_place #query_places').click ->

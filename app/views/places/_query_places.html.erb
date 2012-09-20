@@ -1,8 +1,9 @@
 <ul>
-  <% @places.each do |place| %>
     <li>
-      <%= radio_button_tag(:place, "#{place.coord_geographic.x} #{place.coord_geographic.y}") %>
+      <%= radio_button_tag(:place, "#{place.coord_geographic.x} #{place.coord_geographic.y}", false, 
+                           :'data-place' => Rabl::Renderer.json(place, "places/show", view_path: "app/views"), class: "json-place") %>
       <%= label_tag(:place, place.name.titleize) %>                
     </li>
-  <% end %>
 </ul>
+
+<!-- Rabl.render(place, "places/show", view_path: "app/views", format: :json) -->

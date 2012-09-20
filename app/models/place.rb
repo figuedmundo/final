@@ -21,7 +21,7 @@ class Place < ActiveRecord::Base
 
   attr_accessor :lat, :lon
 
-  before_save :create_coord
+  # before_save { |place| place.coord = FACTORY.point(lon, lat).projection if place.new_record? }
 
   include PgSearch
   pg_search_scope :search, against: [:name, :desc, :address],
@@ -32,7 +32,9 @@ class Place < ActiveRecord::Base
   FACTORY = RGeo::Geographic.simple_mercator_factory
   set_rgeo_factory_for_column(:coord, FACTORY.projection_factory)
 
+  before_save :create_coord
   before_save { |place| place.name = name.downcase }
+
   validates :name,  uniqueness: { case_sensitive: true, message: "este nombre ya esta en uso" },
                     presence: { message: "no puede estar en blanco"}
 
@@ -81,7 +83,11 @@ class Place < ActiveRecord::Base
   private
 
     def create_coord
-      self.coord = FACTORY.point(lon, lat).projection
+      if self.new_record?
+        self.coord = FACTORY.point(lon, lat).projection 
+      else
+        p self.coord
+      end
     end
 
 end

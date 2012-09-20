@@ -16,7 +16,7 @@
         <%= link_to "Add image", new_place_photo_path(@place), class: "editar-perfil" %>
       </header>
 
-      <article id="show_place" class="perfil">
+      <article id="show_place" class="perfil" data-place="<%= render(template: "places/show.json.rabl") %>" >
         <div id="map"></div>
 
         <% if @place.photos.any? %>

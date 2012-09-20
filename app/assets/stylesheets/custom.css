@@ -663,3 +663,39 @@ input:focus, textarea:focus {
     border:0;
     display:block;
 }
+
+#infobox {
+    /*display: block;*/
+    /*position:relative;*/
+    width: 254px;
+    height: 152px;
+    background: #101010;
+    border: 1px solid #000;
+}
+#infobox .ib-left {
+    border: 1px solid transparent;
+    color: #FFF;
+    display: inline-block;
+    /*padding-left: 3px;*/
+    /*min-width: 100px;*/
+    max-width: 100px;
+    max-height: 150px;
+    vertical-align: top;
+}
+#infobox .ib-left a {
+    color: #FFF;
+}
+#infobox .ib-left a:hover {
+    color: #00AA00;
+}
+#infobox .ib-left p {
+    padding-left: 6px;
+}
+#infobox .ib-right {
+    border: 1px solid transparent;
+    display: inline-block;
+    width: 150px;
+    max-height: 150px;
+    vertical-align: top;
+
+}
