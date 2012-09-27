@@ -43,18 +43,6 @@ class PlacesController < ApplicationController
     @title = "Finder"
 
     @places ||= Place.all
-
-    # query_places
-    # if params[:lon_s] && params[:lat_s]
-      
-    #   res = Way.path_cost_from(params[:lon_s].to_f, params[:lat_s].to_f, 
-    #                            params[:lon_t].to_f, params[:lat_t].to_f)
-
-    #   @costo = res[:cost]
-    #   gon.poly = Way.get_way(res[:edges])
-
-    # end
-
   end
 
   def search
@@ -67,6 +55,15 @@ class PlacesController < ApplicationController
 
     @costo = res[:cost]
     @path = Way.get_way(res[:edges]).to_json
+    # @hot_spots = Way.hot_spots(res[:edges]).map {|p| Place.find(p)}.to_json
+    @hot = Way.hot_spots(res[:edges])
+
+    @hot_spots = []
+    @hot.each do |h|
+      p = Place.find(h)
+      @hot_spots << Rabl::Renderer.json(p, "places/show", view_path: "app/views")
+    end
+
   end
 
 

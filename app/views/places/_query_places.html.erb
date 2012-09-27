@@ -1,7 +1,7 @@
 <ul>
     <li>
       <%= radio_button_tag(:place, "#{place.coord_geographic.x} #{place.coord_geographic.y}", false, 
-                           :'data-place' => Rabl::Renderer.json(place, "places/show", view_path: "app/views"), class: "json-place") %>
+                           :'data-place' => Rabl::Renderer.json(place, "places/show", view_path: "app/views")) %>
       <%= label_tag(:place, place.name.titleize) %>                
     </li>
 </ul>

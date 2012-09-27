@@ -29,8 +29,8 @@ class Way < ActiveRecord::Base
     point_source = FACTORY.point(lon_s, lat_s).projection
     point_target = FACTORY.point(lon_t, lat_t).projection
     connection = Way.connection
-    s = connection.select_value("select find_nearest_node_within_distance( '#{point_source.to_s}' , 2000.0, 'ways' )")
-    t = connection.select_value("select find_nearest_node_within_distance( '#{point_target.to_s}' , 2000.0, 'ways' )")
+    s = connection.select_value("select find_nearest_node_within_distance( '#{point_source.to_s}' , 100.0, 'ways' )")
+    t = connection.select_value("select find_nearest_node_within_distance( '#{point_target.to_s}' , 100.0, 'ways' )")
     res = connection.select_all("SELECT  * from  shortest_path('select gid as id, source::integer, 
                                 target::integer, dist::double precision as cost from ways', 
                                 #{s.to_i}, #{t.to_i}, false, false)")
@@ -39,13 +39,13 @@ class Way < ActiveRecord::Base
     get_edges_cost res
   end
 
-  def self.get_way(lista)
+  def self.get_way(edges)
     path = []
     
-    lista.each do |l|
+    edges.each do |edge|
       lonLat = []
-      if l > 0
-        way = Way.find(l)
+      if edge > 0
+        way = Way.find(edge)
         # lonLat << points_to_json(unproject_points(way.the_geom.points))
         way.the_geom.points.each do |point|
           unprojected_point = FACTORY.unproject(point) 
@@ -55,6 +55,27 @@ class Way < ActiveRecord::Base
       path << lonLat
     end
     path
+  end
+
+  def self.hot_spots(edges)
+    # edges.pop    
+    where = "where "
+    edges.each_with_index do |edge, i|
+      if edge > 0
+        where += "w.gid = #{edge}" 
+        where += " or " unless i == edges.length - 2
+      end
+    end
+
+
+    connection = Way.connection
+    places = connection.select_all("select distinct on (p.id) p.id 
+                                   from places p left join ways w  on st_dwithin(p.coord, w.the_geom, 20) 
+                                   #{where}")
+    Way.clear_active_connections!
+
+    places.map { |place| place["id"].to_i }
+
   end
 
   private

@@ -28,23 +28,20 @@ jQuery ->
     $('#lon_s').val(coords.lng)
     $('#lat_s').val(coords.lat)
     UMSS.addMarker(coords)
-    UMSS.showMarkers()
 
-  $('#query_places').on 'click', '.json-place', ->
+  $('#query_places').on 'click', 'input', ->
     place = $(this).data('place')
     console.log place
-    UMSS.addMarker(place)
-    UMSS.showMarkers()
+    $('#lat_t').val place.lat
+    $('#lon_t').val place.lng
+    UMSS.addTargetMarker(place)
+    UMSS.infobox.close()
+    # UMSS.offTargetMarker()
 
 
-  
-  $('#finder_place #query_places').click ->
-    target_coord = $('input[name="place"]:checked').val()
-    $('#lon_t').val target_coord.split(" ")[0]
-    $('#lat_t').val(target_coord.split(" ")[1])
 
   $('#finder_place #buscar_ruta').click ->
-    if $('#lon_s').val() == "" and $('#lon_t').val() == ""
+    if( $('#lon_s').val() == "" or $('#lon_t').val() == "" )
       return false
     
 
@@ -56,10 +53,10 @@ jQuery ->
   if gon.places?
     places = gon.places
     console.log places
-    UMSS.addMarkers_(places)
+    UMSS.addMarkers_(places, 'rojo')
 
   if gon.place?
-    UMSS.addMarkers(gon.place)
+    UMSS.addMarker(gon.place, 'blue')
     UMSS.showMarkers()
 ###  
 ###

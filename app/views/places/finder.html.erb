@@ -16,30 +16,36 @@
 
       <article id="finder_place" class="perfil">
         <div id="map"></div>
+
+        <div id="solution"></div>
       
-        <div class="form_finder">
-          <%= form_tag({controller: "places", action: "search"},  remote: true) do %>
-            <%= text_field_tag :query, params[:query] %>
-            <%= submit_tag "buscar destino", name: nil %>
-          <% end -%>
-        </div>
+        <div id="finder_forms">
+          <div id="find_places">
+            <%= form_tag({controller: "places", action: "search"},  remote: true) do %>
+              <%= text_field_tag :query, params[:query] %>
+              <%= submit_tag "buscar destino", name: nil %>
+            <% end -%>
+          </div>
 
-        <div id="query_places">
-          <%= render partial: 'query_places', collection: @places, as: :place  %>
-        </div>
+          <div id="query_places">
+            <%= render partial: 'query_places', collection: @places, as: :place  %>
+          </div>
           
-        <%# render 'found_place' %>
-          <%= form_tag({controller: "places", action: "found"}, remote: true ) do |f| %>
+          <div id="find_path">
+            <%= form_tag({controller: "places", action: "found"}, remote: true ) do %>
 
-            
-            <%= hidden_field_tag :lon_s %>
-            <%= hidden_field_tag :lat_s %>
+              
+              <%= hidden_field_tag :lon_s %>
+              <%= hidden_field_tag :lat_s %>
 
-            <%= hidden_field_tag :lon_t %>
-            <%= hidden_field_tag :lat_t %>
+              <%= hidden_field_tag :lon_t %>
+              <%= hidden_field_tag :lat_t %>
 
-            <%= submit_tag "Buscar ruta", id: 'buscar_ruta' %>
-          <% end -%>
+              <%= submit_tag "Buscar ruta", id: 'buscar_ruta' %>
+            <% end -%>
+          </div>         
+        </div>
+
       </article>
 
    </section><!--

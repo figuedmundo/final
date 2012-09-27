@@ -3,6 +3,8 @@ var UMSS = {
     infowindow : null,
     markers : Array(),
     marker : null,
+    targetMarker : null,
+    startPointMarker : null,
     // polyline : null,
     ruta : [],
     locations : null,
@@ -18,15 +20,20 @@ var UMSS = {
            center: new google.maps.LatLng(  (opt.lat || -17.3937285 ) , (opt.lng ||  -66.1457475) ),
            mapTypeId: google.maps.MapTypeId.ROADMAP    ,
            disableDefaultUI: true,
-           navigationControl: true
-       }
+           navigationControl: true,
+           mapTypeControl: true,
+           mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DEFAULT,
+            mapTypeIds: [ google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.SATELLITE ]
+           }
+       };
        
        this.map = new google.maps.Map( $(opt.selector || "#map").get(0), options ); 
 
 
     },
 
-    addMarker : function( object_ ){
+    addMarker_ : function( object_ ){
                 
 
             if (!UMSS.marker){
@@ -43,90 +50,133 @@ var UMSS = {
                     UMSS.infowindow = new google.maps.InfoWindow();
                 };
 
-                UMSS.infowindow.setContent("<%= 'hola mundo from rails' %>");
-                
                 UMSS.infowindow.open(UMSS.map, marker);
             });
 
             // this.polyline.getPath().push( marker.position );
     },
 
-    addMarkers : function( object ){
+    addMarker : function( object ){
+      
+      var image = new google.maps.MarkerImage('../../assets/gota.png' );
+
+      if (!UMSS.marker){
+        UMSS.marker = new google.maps.Marker({
+          icon: image,
+          map: UMSS.map
+        });
+      };
+      UMSS.marker.setPosition(new google.maps.LatLng(object.lat, object.lng));
+    },
+
+
+
+    addInfobox : function(object, marker){
+      var boxText = document.createElement("div");
+      ibHtml =  "<div id='infobox' >"
+      ibHtml +=   "<div class='ib-left'>"
+      ibHtml +=     "<a href='places/"+object.id+"'><h4>"+object.name+"</h4></a> "
+      if(object.telf !== undefined){
+        ibHtml +=   "<p>telf: "+object.telf+"</p>"
+      }
+      if(object.desc !== undefined){
+        ibHtml +=   "<p>"+object.desc+"</p>"
+      }
+      if(object.address !== undefined){
+        ibHtml +=   "<p>"+object.address+"</p>"
+      }
+      ibHtml +=   "</div>"
+      if(object.photos !== undefined){
+        ibHtml +=   "<div class='ib-right'>"
+        ibHtml +=     "<img src="+object.photos[0].url+">"
+        ibHtml +=   "</div>"
+      }
+      ibHtml += "</div>"
+
+      boxText.innerHTML = ibHtml
+
+      var myOptions = {
+               // content: boxText
+              disableAutoPan: false
+              ,maxWidth: 0
+              ,pixelOffset: new google.maps.Size(0, 0)
+              ,zIndex: null
+              ,boxStyle: { 
+                // background: "url('tipbox.gif') no-repeat"
+                opacity: 0.90
+                ,width: "270px"
+               }
+              ,closeBoxMargin: "1px 1px 1px 1px"
+              ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+              ,infoBoxClearance: new google.maps.Size(1, 1)
+              ,isHidden: false
+              ,pane: "floatPane"
+              ,enableEventPropagation: false
+      };
+       if (!UMSS.infobox) {
+          UMSS.infobox = new InfoBox(myOptions);
+      };
+      UMSS.infobox.setContent(boxText);
+      UMSS.infobox.open(UMSS.map, marker);
+    },
+
+
+
+    addMarkers : function( object, imageType ){
             console.log(object);
+
+            var image = null
+            if(imageType !== undefined){
+              image = new google.maps.MarkerImage('../../assets/'+imageType+'.png', 
+                                                  null,
+                                                  null, 
+                                                  new google.maps.Point(5,5), 
+                                                  new google.maps.Size(10,10));
+
+            }
+            
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng( object.lat, object.lng  ),
                 map: UMSS.map,
-                // icon: 'imagenes/'+object.markerType+'.png'
-                title: 'Posicion '+ object.id
+                icon: image,
+                zIndex: 1
             });
             UMSS.markers.push(marker);
-            // console.log(UMSS.markers);
             
             // maneja el click sobre un marker y muestra el InfoWindow
             google.maps.event.addListener( marker, 'click' , function() {
-                
-                // if (!UMSS.infowindow) {
-                //     UMSS.infowindow = new google.maps.InfoWindow();
-                // };
-                // UMSS.infowindow.setContent(infowindowContent);
-                // UMSS.infowindow.open(UMSS.map, marker);
-
-                var boxText = document.createElement("div");
-                // boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px;";
-/*                ibHtml =  "<div id='infobox' >"
-                ibHtml <<   "<div class='ib-left'>"
-                ibHtml <<     "<h4>"+object.name+" </h4>"
-                ibHtml <<   "</div>"
-                ibHtml <<   "<div class='ib-right'>"
-                ibHtml <<   "</div>"
-                ibHtml << "</div>"*/
-
-                ibHtml =  "<div id='infobox' >"
-                ibHtml +=   "<div class='ib-left'>"
-                ibHtml +=     "<a href='places/"+object.id+"'><h4>"+object.name+"</h4></a> "
-                if(object.telf !== undefined){
-                  ibHtml +=     "<p>telf: "+object.telf+"</p>"
-                }
-                if(object.desc !== undefined){
-                  ibHtml +=     "<p>"+object.desc+"</p>"
-                }
-                if(object.address !== undefined){
-                  ibHtml +=     "<p>"+object.address+"</p>"
-                }
-                ibHtml +=   "</div>"
-                if(object.photos !== undefined){
-                  ibHtml +=   "<div class='ib-right'>"
-                  ibHtml +=     "<img src="+object.photos[0].url+">"
-                  ibHtml +=   "</div>"
-                }
-                ibHtml += "</div>"
-
-                boxText.innerHTML = ibHtml
-
-                var myOptions = {
-                         // content: boxText
-                        disableAutoPan: false
-                        ,maxWidth: 0
-                        ,pixelOffset: new google.maps.Size(0, 0)
-                        ,zIndex: null
-                        ,boxStyle: { 
-                          // background: "url('tipbox.gif') no-repeat"
-                          opacity: 0.90
-                          ,width: "270px"
-                         }
-                        ,closeBoxMargin: "1px 1px 1px 1px"
-                        ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-                        ,infoBoxClearance: new google.maps.Size(1, 1)
-                        ,isHidden: false
-                        ,pane: "floatPane"
-                        ,enableEventPropagation: false
-                };
-                 if (!UMSS.infobox) {
-                    UMSS.infobox = new InfoBox(myOptions);
-                };
-                UMSS.infobox.setContent(boxText);
-                UMSS.infobox.open(UMSS.map, marker);
+                UMSS.addInfobox(object, marker);
             });
+
+    },
+
+    addTargetMarker : function(object){
+      // console.log(object)
+      var type = 'rojo'
+      var image = new google.maps.MarkerImage('../../assets/'+type+'.png', 
+                                            null,
+                                            null, 
+                                            new google.maps.Point(6,6), 
+                                            new google.maps.Size(12,12));
+      if (!UMSS.targetMarker){
+        UMSS.targetMarker = new google.maps.Marker();
+      };
+      UMSS.targetMarker.setIcon(image);
+      UMSS.targetMarker.setPosition(new google.maps.LatLng(object.lat, object.lng));
+      UMSS.targetMarker.setMap(UMSS.map)
+
+      // maneja el click sobre un marker y muestra el InfoWindow
+      google.maps.event.addListener( UMSS.targetMarker, 'click' , function() {
+          UMSS.addInfobox(object, UMSS.targetMarker);
+      });
+
+    },
+
+    offTargetMarker : function(){
+      console.log(UMSS.targetMarker);
+      UMSS.infobox.close();
+      // UMSS.targetMarker.setMap(null);
+      // UMSS.targetMarker.setMap(UMSS.map);
 
     },
 
@@ -134,7 +184,7 @@ var UMSS = {
          // this.locations = locationsJSON.locations;
          console.log(locations);
           $.each( locations, function( key, value ) {
-              UMSS.addMarkers(value);
+              UMSS.addMarkers(value, 'rojo');
 
           });
           // UMSS.showMarkers();
