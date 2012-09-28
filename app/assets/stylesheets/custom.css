@@ -699,3 +699,84 @@ input:focus, textarea:focus {
     vertical-align: top;
 
 }
+/*
+** top-logo
+*/
+
+#top-logo {
+    display: block;
+    /*position: absolute;*/
+    /*background-color: red;*/
+    max-height: 136px;
+    /*min-width: 100%;*/
+    width: 960px;
+    margin: 0 auto;
+
+}
+#top-logo #logo{
+    position: relative;
+    display: block;
+    /*background: blue;*/
+
+}
+
+/*
+** FINDER
+*/
+
+#solution {
+    display: none;
+    position: relative;
+    border: 1px solid #1a0;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+#finder_forms {
+    /*background: red;*/
+    position: relative;
+    padding: 5px 0;
+}
+#finder_forms #find_places {
+    /*background: red;*/
+    /*position: relative;*/
+    display: inline-block;
+    vertical-align: top;
+    min-width: 60%;
+    margin-bottom: 3em;
+    padding-top: 2em ;
+}
+#finder_forms #find_places input{
+    display: block;
+    margin: 5px auto;
+    /*float: right;*/
+    min-width: 80%;
+}
+
+#finder_forms #query_places {
+    /*background: blue;*/
+    padding: 12px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+#finder_forms #query_places input{
+    /*display: block;    */
+}
+
+#finder_forms #find_path {
+    /*background: peru;*/
+    display: block;
+    position: relative;
+    padding: 8px 0;
+    width: 100%;
+}
+#finder_forms #find_path #buscar_ruta{
+    /*color: red;*/
+    margin: 0 auto;
+    display: block;
+    padding-right: 3em; 
+    padding-left: 3em; 
+    /*position: relative;*/
+    text-align: center;
+}

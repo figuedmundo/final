@@ -99,15 +99,16 @@ var UMSS = {
                // content: boxText
               disableAutoPan: false
               ,maxWidth: 0
-              ,pixelOffset: new google.maps.Size(0, 0)
+              ,pixelOffset: new google.maps.Size(3, 3)
               ,zIndex: null
               ,boxStyle: { 
                 // background: "url('tipbox.gif') no-repeat"
                 opacity: 0.90
                 ,width: "270px"
                }
-              ,closeBoxMargin: "1px 1px 1px 1px"
-              ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+              ,closeBoxMargin: "-13px -13px -1px -1px"
+              ,closeBoxURL: "../../assets/exit.png"
+              // ,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
               ,infoBoxClearance: new google.maps.Size(1, 1)
               ,isHidden: false
               ,pane: "floatPane"
