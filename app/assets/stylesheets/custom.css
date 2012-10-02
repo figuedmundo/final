@@ -476,7 +476,7 @@ input, textarea, select, .uneditable-input {
     border-radius: 3px;
 }
 input {
-    /*max-width: 100px;*/
+    max-width: 330px;
 }
 input:focus, textarea:focus {
     border-color: rgba(82, 168, 236, 0.8);
@@ -495,6 +495,10 @@ input:focus, textarea:focus {
     display: block;
     /*margin-bottom: 10px;*/
     padding: 10px 0px  ;
+}
+.simple_form .input .file{
+    /*background-color: red;*/
+    border: 1px solid transparent;
 }
 .simple_form .input .control-label {
     /*float: left;*/

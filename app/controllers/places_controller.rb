@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
   before_filter :loged_in_user
+  before_filter :places, only: [:new, :index, :show ]
   # respond_to :js, only: :found
   # include PlacesHelper
   
@@ -24,7 +25,7 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @places = Place.all
+    # @places = Place.all
     @place    = Place.find(params[:id])
     @comment  = @place.comments.build
     @comments = @place.comments
@@ -34,7 +35,7 @@ class PlacesController < ApplicationController
   end
 
   def index
-    @places = Place.all
+    # @places = Place.all
     @title = "Lugares"
     gon.rabl "app/views/places/index.json.rabl", as: "places"
   end
@@ -42,7 +43,7 @@ class PlacesController < ApplicationController
   def finder
     @title = "Finder"
 
-    @places ||= Place.all
+    @places ||= Place.all[0..10]
   end
 
   def search
@@ -68,5 +69,9 @@ class PlacesController < ApplicationController
 
 
   private
+
+  def places
+    @places = Place.all
+  end
 
 end

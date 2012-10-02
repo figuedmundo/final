@@ -19,12 +19,15 @@
 
         <%= simple_form_for @place do |f| %>
 
-          <%= f.input :lat %>
-          <%= f.input :lon %>
+          <%= f.input :lat, as: :hidden %>
+          <%= f.input :lon, as: :hidden %>
           <%= f.input :name %>
           <%= f.input :address %>
           <%= f.input :desc %>
           <%= f.association :type_place %>
+
+          <%= f.error :base %>
+
           <%= f.button :submit, value: "Crear lugar" %>
 
         <% end %>

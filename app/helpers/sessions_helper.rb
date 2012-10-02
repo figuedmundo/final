@@ -43,6 +43,7 @@ module SessionsHelper
   def loged_in_user
     unless loged_in?
       store_location
+      # @places = Place.all
       redirect_to login_path, notice: "Porfavor registrate!!" 
     end
   end

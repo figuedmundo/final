@@ -83,7 +83,6 @@ class NewPlace
     alert 'new place'
 
 class ShowPlace
-
   constructor: ->
     alert 'show place'
   
