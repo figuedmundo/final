@@ -43,7 +43,7 @@ class PlacesController < ApplicationController
   def finder
     @title = "Finder"
 
-    @places ||= Place.all[0..10]
+    @places ||= Place.all
   end
 
   def search

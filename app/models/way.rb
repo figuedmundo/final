@@ -11,9 +11,10 @@
 #  updated_at :datetime        not null
 #  the_geom   :spatial({:srid=
 #
+# require "rgeo-shapefile"
 
 class Way < ActiveRecord::Base
-  attr_accessible :dist, :name
+  attr_accessible :dist, :name, :the_geom
 
   FACTORY = RGeo::Geographic.simple_mercator_factory
   set_rgeo_factory_for_column(:the_geom, FACTORY.projection_factory)
@@ -29,8 +30,8 @@ class Way < ActiveRecord::Base
     point_source = FACTORY.point(lon_s, lat_s).projection
     point_target = FACTORY.point(lon_t, lat_t).projection
     connection = Way.connection
-    s = connection.select_value("select find_nearest_node_within_distance( '#{point_source.to_s}' , 100.0, 'ways' )")
-    t = connection.select_value("select find_nearest_node_within_distance( '#{point_target.to_s}' , 100.0, 'ways' )")
+    s = connection.select_value("select find_nearest_node_within_distance( '#{point_source.to_s}' , 150.0, 'ways' )")
+    t = connection.select_value("select find_nearest_node_within_distance( '#{point_target.to_s}' , 150.0, 'ways' )")
     res = connection.select_all("SELECT  * from  shortest_path('select gid as id, source::integer, 
                                 target::integer, dist::double precision as cost from ways', 
                                 #{s.to_i}, #{t.to_i}, false, false)")
@@ -76,6 +77,17 @@ class Way < ActiveRecord::Base
 
     places.map { |place| place["id"].to_i }
 
+  end
+
+  def self.load_shapefile(path)
+    RGeo::Shapefile::Reader.open( path, factory: FACTORY ) do |file|
+      file.each do |record|
+        way = record.geometry.projection
+        ruta = Way.create( name: record['id'], dist: way.length, the_geom: way[0]  )
+        # ruta.the_geom = way
+        # ruta.save
+      end
+    end
   end
 
   private
@@ -125,3 +137,26 @@ ruta4.the_geom = way4
 ruta4.dist = p4.distance(p6) 
 ruta4.save
 =end
+
+
+# RGeo::Shapefile::Reader.open('../../garmin/casa/borde_casa.shp') do |file|
+#   puts "File contains #{file.num_records} records."
+#   file.each do |record|
+#     puts "Record number #{record.index}:"
+#     puts "  Geometry: #{record.geometry.as_text}"
+#     puts "  Attributes: #{record.attributes.inspect}"
+#   end
+#   file.rewind
+#   record = file.next
+#   puts "First record geometry was: #{record.geometry.as_text}"
+# end
+
+
+ # $ irb
+ # > require 'rgeo'
+ #  => true
+ # > require 'rgeo-shapefile'
+ #  => true
+ # > require File.expand_path('config/environment', '.')
+ #  => true
+ # >  Way.load_shapefile('path/to/shapefile')
