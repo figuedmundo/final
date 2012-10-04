@@ -30,8 +30,8 @@ class Way < ActiveRecord::Base
     point_source = FACTORY.point(lon_s, lat_s).projection
     point_target = FACTORY.point(lon_t, lat_t).projection
     connection = Way.connection
-    s = connection.select_value("select find_nearest_node_within_distance( '#{point_source.to_s}' , 150.0, 'ways' )")
-    t = connection.select_value("select find_nearest_node_within_distance( '#{point_target.to_s}' , 150.0, 'ways' )")
+    s = connection.select_value("select find_nearest_node_within_distance( '#{point_source.to_s}' , 100.0, 'ways' )")
+    t = connection.select_value("select find_nearest_node_within_distance( '#{point_target.to_s}' , 100.0, 'ways' )")
     res = connection.select_all("SELECT  * from  shortest_path('select gid as id, source::integer, 
                                 target::integer, dist::double precision as cost from ways', 
                                 #{s.to_i}, #{t.to_i}, false, false)")
@@ -160,3 +160,15 @@ ruta4.save
  # > require File.expand_path('config/environment', '.')
  #  => true
  # >  Way.load_shapefile('path/to/shapefile')
+
+
+
+  # def load_shapefile(path)
+  #   RGeo::Shapefile::Reader.open( path, factory: FACTORY ) do |file|
+  #     file.each do |record|
+  #       puts "Record number #{record.index}:"
+  #       puts "  Geometry: #{record.geometry.as_text}"
+  #       puts "  id : #{record['id']}"
+  #     end
+  #   end
+  # end
