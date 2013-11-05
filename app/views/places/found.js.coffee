@@ -15,6 +15,6 @@ UMSS.addMarkers(<%= hs.html_safe %>, 'azul')
 UMSS.targetMarker.setZIndex(google.maps.MAX_ZINDEX)
 
 $('#solution').
-  html(" La distancia aproximada al destino es de: " + <%= @costo %> + " mts").
+  html(" La distancia aproximada al destino es de " + <%= @costo %> + " mts").
   show()
 

@@ -747,7 +747,7 @@ input:focus, textarea:focus {
     /*position: relative;*/
     display: inline-block;
     vertical-align: top;
-    min-width: 60%;
+    min-width: 50%;
     margin-bottom: 3em;
     padding-top: 2em ;
 }
@@ -763,6 +763,7 @@ input:focus, textarea:focus {
     padding: 12px 0;
     display: inline-block;
     vertical-align: top;
+    /*max-width: 38%;*/
 }
 #finder_forms #query_places input{
     /*display: block;    */

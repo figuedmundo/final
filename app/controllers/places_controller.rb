@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_filter :loged_in_user
+  # before_filter :loged_in_user
   before_filter :places, only: [:new, :index, :show ]
   # respond_to :js, only: :found
   # include PlacesHelper
@@ -43,7 +43,7 @@ class PlacesController < ApplicationController
   def finder
     @title = "Finder"
 
-    @places ||= Place.all
+    @places ||= Place.all[0..10]
   end
 
   def search

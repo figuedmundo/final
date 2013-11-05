@@ -30,3 +30,5 @@ bundler_stubs/
 
 # images uploaded
 /public/uploads
+
+/bin
