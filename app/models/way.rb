@@ -117,14 +117,14 @@ end
 # end
 
 
- $ irb
- > require 'rgeo'
-  => true
- > require 'rgeo-shapefile'
-  => true
- > require File.expand_path('config/environment', '.')
-  => true
- >  Way.load_shapefile('public/umss/umss')
+ # $ irb
+ # > require 'rgeo'
+ #  => true
+ # > require 'rgeo-shapefile'
+ #  => true
+ # > require File.expand_path('config/environment', '.')
+ #  => true
+ # >  Way.load_shapefile('public/umss/umss')
 
 
 
