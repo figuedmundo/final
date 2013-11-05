@@ -32,3 +32,5 @@ bundler_stubs/
 /public/uploads
 
 /bin
+
+/config/database.yml
